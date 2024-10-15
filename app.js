@@ -7,22 +7,28 @@ app.set('view engine', 'ejs');
 const md5 = require('md5');
 
 app.use(express.static('public'));
+app.use(session({
+  secret: 'OOF',
+  resave: false,
+  saveUninitialized: false
+}));
+
 
 app.get('/', async function (req, res) {
   const user = await usrModel.getUserById(2);
   res.render('index', { user });
 });
 
-app.use(function (req, res) {
-  res.status(404).render('404');
-});
 
-app.listen(3000, function () {
-  console.log('server running on port 3000');
-});
+
+
 
 app.get('/login', function (req, res) {
   res.render('login', { error: null });
+});
+
+app.get('/catalogue', function (req, res) {
+  res.render('catalogue');
 });
 
 app.post('/login', async function (req, res) {
@@ -38,11 +44,6 @@ app.post('/login', async function (req, res) {
   }
 }); 
 
-app.use(session({
-  secret: 'OOF',
-  resave: false,
-  saveUninitialized: false
-}));
 
 app.post('/login', async function (req, res) {
   const login = req.body.login;
@@ -57,4 +58,13 @@ app.post('/login', async function (req, res) {
   }
 
   res.render('login', { error: "Erreur dans le login/mdp" });
+});
+
+
+app.use(function (req, res) {
+  res.status(404).render('404');
+});
+
+app.listen(3000, function () {
+  console.log('server running on port 3000');
 });
