@@ -7,25 +7,8 @@
     <title>Location de Matériel</title>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="public/img/Logo_locafit.png" alt="Logo" class="logo-image">
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="produits.html">Produits</a></li>
-            <li><a href="locations.html">Vos Locations</a></li>
-        </ul>        
-        <div class="account">
-            <a href="compte.html">
-                <img src="public/img/profil.png" alt="Compte Client" class="account-icon">Cathy LePrince
-            </a>
-        </div>
-        
-    </nav>
+    <%- include('header') %>
     
-    
-
     <div class="container">
         <header>
             <h1>Location de Matériel</h1>
@@ -53,11 +36,9 @@
                 <button class="rent-button">Louer maintenant</button>
             </div>
         </section>
-        
-        <footer>
-            <p>&copy; 2024 Location de Matériel. Tous droits réservés.</p>
-        </footer>
     </div>
+
+    <%- include('footer') %>
 
     <script src="public/js/script.js"></script>
 </body>
