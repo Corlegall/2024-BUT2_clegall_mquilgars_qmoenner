@@ -114,8 +114,10 @@
 .thumbnail-gallery {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     flex-wrap: wrap;
     margin-top: 10px; /* Peut-être ajouter un peu plus de marge si nécessaire */
+
 }
 
 .image-gallery {
@@ -148,7 +150,7 @@
 
 
 .thumbnail {
-    max-width: 40px; 
+    max-width: 65px; 
     height: auto; 
     margin: 0 5px;
     cursor: pointer;
