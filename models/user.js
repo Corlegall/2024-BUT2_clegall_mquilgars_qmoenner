@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 const bdd = require("./database.js")
 
 async function getUserById(id){
@@ -14,3 +15,11 @@ async function getUserById(id){
 };
 
 module.exports = { getUserById};
+=======
+async function checklogin (login) {
+    sql = "SELECT * FORM utilisateur";
+    return new Promise((resolve, reject)) => {
+        resolve(true);
+    });
+}
+>>>>>>> Stashed changes
