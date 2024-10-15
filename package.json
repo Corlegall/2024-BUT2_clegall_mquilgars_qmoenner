@@ -12,12 +12,8 @@
     "ejs": "^3.1.10",
     "expres": "^0.0.5",
     "express": "^4.21.1",
-<<<<<<< Updated upstream
-    "mysql": "^2.18.9"
-=======
     "express-session": "^1.18.1",
     "md5": "^2.3.0",
     "mysql": "^2.18.1"
->>>>>>> Stashed changes
   }
 }
