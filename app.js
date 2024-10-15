@@ -1,11 +1,8 @@
 const express = require('express');
 const app = express();
-<<<<<<< Updated upstream
 const usrModel = require('./models/user.js')
 
-=======
 const sessoin = require('express-session');
->>>>>>> Stashed changes
 app.set('view engine', 'ejs');
 const md5 = require('md5');
 
