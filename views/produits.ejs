@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="public/CSS/style.css">
+    <script src="public/js/script.js"></script>
     <title>Location de Matériel</title>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo">
@@ -13,24 +16,24 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Accueil</a></li>
-            <li><a href="produits.html">Produits</a></li>
+            <li><a href="produits.html">Nos Produits</a></li>
             <li><a href="locations.html">Vos Locations</a></li>
-        </ul>        
+        </ul>
         <div class="account">
             <a href="compte.html">
                 <img src="public/img/profil.png" alt="Compte Client" class="account-icon">Cathy LePrince
             </a>
         </div>
-        
+
     </nav>
-    
-    
+
+
 
     <div class="container">
         <header>
             <h1>Location de Matériel</h1>
         </header>
-        
+
         <section class="product">
             <div class="image-gallery">
                 <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
@@ -38,29 +41,36 @@
                 <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
             </div>
             <div class="thumbnail-gallery">
-                <img src="public/img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail" onclick="setImage(this.src)">
-                <img src="public/img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail" onclick="setImage(this.src)">
-                <img src="public/img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail" onclick="setImage(this.src)">
-                <img src="public/img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail" onclick="setImage(this.src)">
-                <img src="public/img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail" onclick="setImage(this.src)">
+                <img src="public/img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail"
+                    onclick="setImage(this.src)">
+                <img src="public/img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail"
+                    onclick="setImage(this.src)">
+                <img src="public/img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail"
+                    onclick="setImage(this.src)">
+                <img src="public/img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail"
+                    onclick="setImage(this.src)">
+                <img src="public/img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail"
+                    onclick="setImage(this.src)">
             </div>
             <div class="product-details">
                 <div class="title-container">
                     <h2>TAPIS DE COURSE CONNECTE RUN500</h2>
                 </div>
                 <p class="price">89,9€ / mois</p>
-                <p>Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un produit performant en usage et facile à ranger après l'entraînement.
-                    Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement facile.</p>
-                <button class="rent-button">Louer maintenant</button>
+                <p class="descr">Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un produit
+                    performant en usage et facile à ranger après l'entraînement.
+                    Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
+                    meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
+                    facile.</p>
+                <button class="rent-button">Louer</button>
             </div>
         </section>
-        
-        
-        <footer>
-            <p>&copy; 2024 Location de Matériel. Tous droits réservés.</p>
-        </footer>
-    </div>
 
-    <script src="public/js/script.js"></script>
+    </div>
+    <footer>
+        <p>&copy; Contact & Condition d’utilisation
+            2024 LocaFit - Tous droits réservés</p>
+    </footer>
 </body>
+
 </html>

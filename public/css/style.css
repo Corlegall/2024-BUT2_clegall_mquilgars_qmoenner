@@ -1,8 +1,20 @@
+body {
+    background-color: #FFF3D4; /* Couleur de fond pour le corps */
+    margin: 0; /* Supprime la marge par défaut */
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column; /* Permet au footer de se placer en bas */
+}
+
+.container {
+    flex: 1; /* Permet à la zone de contenu de prendre tout l'espace restant */
+}
+
 .navbar {
     display: flex;
     justify-content: space-between; /* Change pour distribuer l'espace */
     align-items: center;
-    background-color:  rgba(168, 213, 186, 0.5); /* Couleur de fond */
+    background-color:  #A8D5BA; /* Couleur de fond */
     padding: 10px 20px; /* Espacement intérieur */
 }
 
@@ -17,9 +29,10 @@
 .nav-links {
     list-style: none; /* Supprime les puces de la liste */
     display: flex; /* Aligne les éléments de la liste en ligne */
-    gap: 50px; /* Espacement entre les liens */
+    gap: 130px; /* Espacement entre les liens */
     flex-grow: 1; /* Permet à la liste de prendre tout l'espace disponible */
     justify-content: center; /* Centre les liens horizontalement */
+    font-size: 25px; /* Ajustez la taille de police ici */
 }
 
 .nav-links a {
@@ -41,6 +54,7 @@
     display: flex; /* Permet d'aligner l'image et le texte */
     align-items: center; /* Centre verticalement l'image et le texte */
     margin-left: 50px; /* Espace entre les liens et le compte client */
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .account a {
@@ -87,7 +101,7 @@
 
 
 .product-details > h2 {
-    background-color: rgba(168, 213, 186, 0.5); /* Couleur avec transparence */
+    background-color: #A8D5BA; /* Couleur  */
     border-radius: 10px; /* Arrondi des coins */
     padding: 10px 15px; /* Espacement intérieur */
     margin: 0 0 10px 0; /* Marge en bas pour séparer du prix */
@@ -103,6 +117,12 @@
     padding: 10px 15px; /* Espacement intérieur */
     display: inline-block; /* Permet à l'élément de s'ajuster à son contenu */
     margin: 10px 0; /* Espace au-dessus et en dessous */
+    font-size: 24px; /* Ajustez la taille de police ici */
+}
+
+.descr {
+    font-size: 20px; /* Ajustez la taille de police ici */
+    font-family: Arial, sans-serif;
 }
 
 
@@ -142,7 +162,7 @@
 }
 
 #mainImage {
-    max-width: 300px; 
+    max-width: 500px; 
     margin: 10px 0; 
 }
 
@@ -150,7 +170,7 @@
 
 
 .thumbnail {
-    max-width: 65px; 
+    max-width: 90px; 
     height: auto; 
     margin: 0 5px;
     cursor: pointer;
@@ -176,6 +196,7 @@
     cursor: pointer; /* Change le curseur au survol */
     transition: background-color 0.3s; /* Ajoute une transition pour le survol */
     margin-top: 15px; /* Espace au-dessus du bouton */
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .rent-button:hover {
@@ -183,13 +204,11 @@
 }
 
 
-
 footer {
-    text-align: center; /* Centre le texte */
-    background-color: rgba(168, 213, 186, 0.5); /* Couleur de fond */
+    background-color: #41403F; /* Couleur de fond pour le footer */
     color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
     padding: 15px 0; /* Espacement vertical */
-    margin-top: 40px; /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
 }
 
 
