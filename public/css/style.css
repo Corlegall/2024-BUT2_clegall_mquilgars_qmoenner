@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between; /* Change pour distribuer l'espace */
     align-items: center;
-    background-color: #3498db; /* Couleur de fond */
+    background-color:  rgba(168, 213, 186, 0.5); /* Couleur de fond */
     padding: 10px 20px; /* Espacement intérieur */
 }
 
@@ -186,7 +186,7 @@
 
 footer {
     text-align: center; /* Centre le texte */
-    background-color: #3498db; /* Couleur de fond */
+    background-color: rgba(168, 213, 186, 0.5); /* Couleur de fond */
     color: white; /* Couleur du texte */
     padding: 15px 0; /* Espacement vertical */
     margin-top: 40px; /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
