@@ -1,3 +1,15 @@
+body {
+    background-color: #FFF3D4; /* Couleur de fond pour le corps */
+    margin: 0; /* Supprime la marge par défaut */
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column; /* Permet au footer de se placer en bas */
+}
+
+.container {
+    flex: 1; /* Permet à la zone de contenu de prendre tout l'espace restant */
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -20,16 +32,12 @@
 }
 
 .nav-links {
-    list-style: none;
-    /* Supprime les puces de la liste */
-    display: flex;
-    /* Aligne les éléments de la liste en ligne */
-    gap: 50px;
-    /* Espacement entre les liens */
-    flex-grow: 1;
-    /* Permet à la liste de prendre tout l'espace disponible */
-    justify-content: center;
-    /* Centre les liens horizontalement */
+    list-style: none; /* Supprime les puces de la liste */
+    display: flex; /* Aligne les éléments de la liste en ligne */
+    gap: 130px; /* Espacement entre les liens */
+    flex-grow: 1; /* Permet à la liste de prendre tout l'espace disponible */
+    justify-content: center; /* Centre les liens horizontalement */
+    font-size: 25px; /* Ajustez la taille de police ici */
 }
 
 .nav-links a {
@@ -62,6 +70,10 @@
     /* Centre verticalement l'image et le texte */
     margin-left: 50px;
     /* Espace entre les liens et le compte client */
+   
+   
+    
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .account a {
@@ -241,7 +253,6 @@
 }
 
 
-
 footer {
     text-align: center;
     /* Centre le texte */
@@ -254,6 +265,9 @@ footer {
     margin-top: 40px;
     /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
 }
+
+
+
 
 * {
     background-color: #FFF3D4;
