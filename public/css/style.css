@@ -162,7 +162,7 @@ body {
 }
 
 #mainImage {
-    max-width: 300px; 
+    max-width: 500px; 
     margin: 10px 0; 
 }
 
@@ -170,7 +170,7 @@ body {
 
 
 .thumbnail {
-    max-width: 65px; 
+    max-width: 90px; 
     height: auto; 
     margin: 0 5px;
     cursor: pointer;
@@ -210,6 +210,7 @@ footer {
     text-align: center; /* Centre le texte */
     padding: 15px 0; /* Espacement vertical */
 }
+
 
 
 
