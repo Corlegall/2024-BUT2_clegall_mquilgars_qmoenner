@@ -11,12 +11,10 @@ body {
 }
 
 .navbar {
-
-
     display: flex;
     justify-content: space-between; /* Change pour distribuer l'espace */
     align-items: center;
-    background-color:  rgba(168, 213, 186, 0.5); /* Couleur de fond */
+    background-color:  #A8D5BA; /* Couleur de fond */
     padding: 10px 20px; /* Espacement intérieur */
 }
 
@@ -103,7 +101,7 @@ body {
 
 
 .product-details > h2 {
-    background-color: rgba(168, 213, 186, 0.5); /* Couleur avec transparence */
+    background-color: #A8D5BA; /* Couleur  */
     border-radius: 10px; /* Arrondi des coins */
     padding: 10px 15px; /* Espacement intérieur */
     margin: 0 0 10px 0; /* Marge en bas pour séparer du prix */
@@ -120,6 +118,11 @@ body {
     display: inline-block; /* Permet à l'élément de s'ajuster à son contenu */
     margin: 10px 0; /* Espace au-dessus et en dessous */
     font-size: 24px; /* Ajustez la taille de police ici */
+}
+
+.descr {
+    font-size: 20px; /* Ajustez la taille de police ici */
+    font-family: Arial, sans-serif;
 }
 
 
@@ -207,6 +210,7 @@ footer {
     text-align: center; /* Centre le texte */
     padding: 15px 0; /* Espacement vertical */
 }
+
 
 
 * {
