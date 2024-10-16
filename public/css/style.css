@@ -192,6 +192,11 @@ footer {
     margin-top: 40px; /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
 }
 
+
+
+
+
+ /* PAGE CATALOGUE */
 * {
     background-color: #FFF3D4;
 }
@@ -349,7 +354,7 @@ body {
 
 
 .sidebar button {
-    background-color: #F4C6C3;
+    background-color: #c97c77;
     color: black;
     border: none;
     padding: 10px;
@@ -361,7 +366,7 @@ body {
 
 
 .sidebar button:hover {
-    background-color: #c97c77;
+    background-color: #F4C6C3;
     transform: translateY(-3px);
 }
 
@@ -388,18 +393,12 @@ body {
 }
 
 
-/* Conteneur pour le titre et le prix */
-.product-info {
-    display: flex; /* Utilisation de flexbox pour aligner les éléments horizontalement */
-    justify-content: space-between; /* Espace entre le titre et le prix */
-    align-items: center; /* Aligne verticalement les éléments */
-    margin-top: 10px;
-}
+
 
 
 /* Style du carré contenant le prix */
 .product-price {
-    background-color: #4CAF50;
+    background-color: #c97c77;
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -413,10 +412,19 @@ body {
 .product-title {
     font-size: 18px;
     font-weight: bold;
-    margin-left: 10px;
+    margin-left: 60px;
+    margin-top: 6px;
     flex-grow: 1;
     background-color: #A8D5BA;
 }
+
+.container_info {
+    display: flex;
+    justify-content: space-between; /* ou center, flex-start, etc. */
+}
+
+
+
 
 
 /* Description du produit */
@@ -431,7 +439,11 @@ body {
 /* Effet au survol */
 .product-item:hover {
     transform: scale(1.05); /* Agrandissement */
-    background-color: #c97c77;  /* Couleur de fond en rouge */
+    background-color: #fff;  /* Couleur de fond en rouge */
+    
 }
 
+
+
+ /* FIN DE LA PAGE CATALOGUE */
 
