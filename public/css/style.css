@@ -12,18 +12,23 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Change pour distribuer l'espace */
+    justify-content: space-between;
+    /* Change pour distribuer l'espace */
     align-items: center;
-    background-color:  #A8D5BA; /* Couleur de fond */
-    padding: 10px 20px; /* Espacement intérieur */
+    background-color: rgba(168, 213, 186, 0.5);
+    /* Couleur de fond */
+    padding: 10px 20px;
+    /* Espacement intérieur */
 }
 
 .logo {
-    margin-right: 100px; /* Espace entre le logo et les liens (augmenté) */
+    margin-right: 100px;
+    /* Espace entre le logo et les liens (augmenté) */
 }
 
 .logo-image {
-    max-width: 100px; /* Taille maximale du logo */
+    max-width: 100px;
+    /* Taille maximale du logo */
 }
 
 .nav-links {
@@ -36,45 +41,65 @@ body {
 }
 
 .nav-links a {
-    display: flex; /* Utilise flex pour centrer le texte */
-    align-items: center; /* Centre verticalement le texte */
-    color: white; /* Change la couleur du texte */
-    text-decoration: none; /* Supprime le soulignement */
-    padding: 10px 15px; /* Ajoute de l'espacement autour du lien */
+    display: flex;
+    /* Utilise flex pour centrer le texte */
+    align-items: center;
+    /* Centre verticalement le texte */
+    color: white;
+    /* Change la couleur du texte */
+    text-decoration: none;
+    /* Supprime le soulignement */
+    padding: 10px 15px;
+    /* Ajoute de l'espacement autour du lien */
 }
 
 .account a {
-    display: flex; /* Utilise flex pour centrer le texte */
-    align-items: center; /* Centre verticalement le texte */
-    color: white; /* Change la couleur du texte pour qu'elle soit visible */
+    display: flex;
+    /* Utilise flex pour centrer le texte */
+    align-items: center;
+    /* Centre verticalement le texte */
+    color: white;
+    /* Change la couleur du texte pour qu'elle soit visible */
 }
 
 
 .account {
-    display: flex; /* Permet d'aligner l'image et le texte */
-    align-items: center; /* Centre verticalement l'image et le texte */
-    margin-left: 50px; /* Espace entre les liens et le compte client */
+    display: flex;
+    /* Permet d'aligner l'image et le texte */
+    align-items: center;
+    /* Centre verticalement l'image et le texte */
+    margin-left: 50px;
+    /* Espace entre les liens et le compte client */
+   
+   
+    
     font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .account a {
-    display: flex; /* Utiliser flex pour centrer le texte par rapport à l'image */
-    align-items: center; /* Centre verticalement le texte avec l'image */
-    text-decoration: none; /* Supprime le soulignement du lien */
-    color: white; /* Change la couleur du texte pour qu'elle soit visible */
+    display: flex;
+    /* Utiliser flex pour centrer le texte par rapport à l'image */
+    align-items: center;
+    /* Centre verticalement le texte avec l'image */
+    text-decoration: none;
+    /* Supprime le soulignement du lien */
+    color: white;
+    /* Change la couleur du texte pour qu'elle soit visible */
 }
 
 
 .account-icon {
-    max-width: 80px; /* Taille de l'icône (augmentée) */
-    margin-right: 10px; /* Espace entre l'icône et le texte (augmenté) */
+    max-width: 80px;
+    /* Taille de l'icône (augmentée) */
+    margin-right: 10px;
+    /* Espace entre l'icône et le texte (augmenté) */
 }
 
 
 
 .product {
-    display: flex; 
-    align-items: flex-start; 
+    display: flex;
+    align-items: flex-start;
 }
 
 .product-details {
@@ -84,51 +109,66 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     margin-top: 20px;
-    width: 80%; /* Ajuste la largeur à 80% de la section parent */
-    max-width: 600px; /* Limite la largeur maximale si nécessaire */
+    width: 80%;
+    /* Ajuste la largeur à 80% de la section parent */
+    max-width: 600px;
+    /* Limite la largeur maximale si nécessaire */
     margin-left: 10%;
 }
 
 
 .title-container {
     display: flex;
-    justify-content: center; /* Centre le titre dans le conteneur */
-    width: auto; /* Prend toute la largeur disponible */
-    margin-bottom: 10px; /* Espace en bas pour séparer du prix */
-    background-color: rgba(168, 213, 186, 0.5); /* Couleur avec transparence */
-    border-radius: 10px; /* Arrondi des coins */
+    justify-content: center;
+    /* Centre le titre dans le conteneur */
+    width: auto;
+    /* Prend toute la largeur disponible */
+    margin-bottom: 10px;
+    /* Espace en bas pour séparer du prix */
+    background-color: rgba(168, 213, 186, 0.5);
+    /* Couleur avec transparence */
+    border-radius: 10px;
+    /* Arrondi des coins */
 }
 
 
-.product-details > h2 {
-    background-color: #A8D5BA; /* Couleur  */
-    border-radius: 10px; /* Arrondi des coins */
-    padding: 10px 15px; /* Espacement intérieur */
-    margin: 0 0 10px 0; /* Marge en bas pour séparer du prix */
-    color: #333; /* Couleur du texte */
-    display: inline-block; /* Permet à l'élément de s'ajuster à son contenu */
-    width: auto; /* Assure que la largeur s'ajuste au contenu */
+.product-details>h2 {
+    background-color: rgba(168, 213, 186, 0.5);
+    /* Couleur avec transparence */
+    border-radius: 10px;
+    /* Arrondi des coins */
+    padding: 10px 15px;
+    /* Espacement intérieur */
+    margin: 0 0 10px 0;
+    /* Marge en bas pour séparer du prix */
+    color: #333;
+    /* Couleur du texte */
+    display: inline-block;
+    /* Permet à l'élément de s'ajuster à son contenu */
+    width: auto;
+    /* Assure que la largeur s'ajuste au contenu */
 }
 
 
 .price {
-    background-color: #f4c6c3; /* Couleur de fond */
-    border-radius: 10px; /* Arrondi des coins */
-    padding: 10px 15px; /* Espacement intérieur */
-    display: inline-block; /* Permet à l'élément de s'ajuster à son contenu */
-    margin: 10px 0; /* Espace au-dessus et en dessous */
-    font-size: 24px; /* Ajustez la taille de police ici */
-}
-
-.descr {
-    font-size: 20px; /* Ajustez la taille de police ici */
-    font-family: Arial, sans-serif;
+    background-color: #f4c6c3;
+    /* Couleur de fond */
+    border-radius: 10px;
+    /* Arrondi des coins */
+    padding: 10px 15px;
+    /* Espacement intérieur */
+    display: inline-block;
+    /* Permet à l'élément de s'ajuster à son contenu */
+    margin: 10px 0;
+    /* Espace au-dessus et en dessous */
 }
 
 
 .product-details p {
-    margin: 10px 0; /* Espacement autour de la description */
-    line-height: 1.5; /* Espacement entre les lignes pour une meilleure lisibilité */
+    margin: 10px 0;
+    /* Espacement autour de la description */
+    line-height: 1.5;
+    /* Espacement entre les lignes pour une meilleure lisibilité */
 }
 
 .thumbnail-gallery {
@@ -136,13 +176,14 @@ body {
     justify-content: center;
     flex-direction: column;
     flex-wrap: wrap;
-    margin-top: 10px; /* Peut-être ajouter un peu plus de marge si nécessaire */
+    margin-top: 10px;
+    /* Peut-être ajouter un peu plus de marge si nécessaire */
 
 }
 
 .image-gallery {
-    align-items: center; 
-    margin-right: 20px; 
+    align-items: center;
+    margin-right: 20px;
     margin-left: 10%;
 }
 
@@ -162,53 +203,67 @@ body {
 }
 
 #mainImage {
-    max-width: 500px; 
-    margin: 10px 0; 
+    max-width: 300px;
+    margin: 10px 0;
 }
 
 
 
 
 .thumbnail {
-    max-width: 90px; 
-    height: auto; 
+    max-width: 65px;
+    height: auto;
     margin: 0 5px;
     cursor: pointer;
-    border: 2px solid transparent; 
+    border: 2px solid transparent;
     transition: border-color 0.3s;
 }
 
 .thumbnail:hover {
-    border-color: #3498db; 
+    border-color: #3498db;
 }
 
 .product-details {
-    flex: 1; 
-    margin-top: 20px; 
+    flex: 1;
+    margin-top: 20px;
 }
 
 .rent-button {
-    background-color: #f4c6c3; /* Couleur de fond */
-    border: none; /* Supprime la bordure */
-    border-radius: 25px; /* Arrondi des coins */
-    padding: 10px 20px; /* Espacement intérieur */
-    color: black; /* Couleur du texte */
-    cursor: pointer; /* Change le curseur au survol */
-    transition: background-color 0.3s; /* Ajoute une transition pour le survol */
-    margin-top: 15px; /* Espace au-dessus du bouton */
-    font-size: 24px; /* Ajustez la taille de police ici */
+    background-color: #f4c6c3;
+    /* Couleur de fond */
+    border: none;
+    /* Supprime la bordure */
+    border-radius: 25px;
+    /* Arrondi des coins */
+    padding: 10px 20px;
+    /* Espacement intérieur */
+    color: black;
+    /* Couleur du texte */
+    cursor: pointer;
+    /* Change le curseur au survol */
+    transition: background-color 0.3s;
+    /* Ajoute une transition pour le survol */
+    margin-top: 15px;
+    /* Espace au-dessus du bouton */
 }
 
 .rent-button:hover {
-    background-color: #e0b3b1; /* Change la couleur au survol */
+    background-color: #e0b3b1;
+    /* Change la couleur au survol */
 }
 
 
 footer {
-    background-color: #41403F; /* Couleur de fond pour le footer */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centre le texte */
-    padding: 15px 0; /* Espacement vertical */
+    text-align: center;
+    /* Centre le texte */
+    background-color: rgba(168, 213, 186, 0.5);
+    /* Couleur de fond */
+    color: white;
+    /* Couleur du texte */
+    padding: 15px 0;
+    /* Espacement vertical */
+    margin-top: 40px;
+    /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
 }
 
 
@@ -231,47 +286,65 @@ body {
 
 .navbar {
     display: flex;
-    justify-content: space-between; /* Change pour distribuer l'espace */
+    justify-content: space-between;
+    /* Change pour distribuer l'espace */
     align-items: center;
-    background-color: #A8D5BA; /* Couleur de fond */
-    padding: 10px 20px; /* Espacement intérieur */
+    background-color: #A8D5BA;
+    /* Couleur de fond */
+    padding: 10px 20px;
+    /* Espacement intérieur */
 }
 
 
 .logo {
-    margin-right: 100px; /* Espace entre le logo et les liens (augmenté) */
+    margin-right: 100px;
+    /* Espace entre le logo et les liens (augmenté) */
 }
 
 
 .logo-image {
-    max-width: 100px; /* Taille maximale du logo */
+    max-width: 100px;
+    /* Taille maximale du logo */
 }
 
 
 .nav-links {
-    list-style: none; /* Supprime les puces de la liste */
-    display: flex; /* Aligne les éléments de la liste en ligne */
-    gap: 50px; /* Espacement entre les liens */
-    flex-grow: 1; /* Permet à la liste de prendre tout l'espace disponible */
-    justify-content: center; /* Centre les liens horizontalement */
+    list-style: none;
+    /* Supprime les puces de la liste */
+    display: flex;
+    /* Aligne les éléments de la liste en ligne */
+    gap: 50px;
+    /* Espacement entre les liens */
+    flex-grow: 1;
+    /* Permet à la liste de prendre tout l'espace disponible */
+    justify-content: center;
+    /* Centre les liens horizontalement */
     background-color: #A8D5BA;
 }
 
 
 .nav-links a {
-    display: flex; /* Utilise flex pour centrer le texte */
-    align-items: center; /* Centre verticalement le texte */
-    color: white; /* Change la couleur du texte */
-    text-decoration: none; /* Supprime le soulignement */
-    padding: 10px 15px; /* Ajoute de l'espacement autour du lien */
+    display: flex;
+    /* Utilise flex pour centrer le texte */
+    align-items: center;
+    /* Centre verticalement le texte */
+    color: white;
+    /* Change la couleur du texte */
+    text-decoration: none;
+    /* Supprime le soulignement */
+    padding: 10px 15px;
+    /* Ajoute de l'espacement autour du lien */
     background-color: #A8D5BA;
 }
 
 
 .account a {
-    display: flex; /* Utilise flex pour centrer le texte */
-    align-items: center; /* Centre verticalement le texte */
-    color: white; /* Change la couleur du texte pour qu'elle soit visible */
+    display: flex;
+    /* Utilise flex pour centrer le texte */
+    align-items: center;
+    /* Centre verticalement le texte */
+    color: white;
+    /* Change la couleur du texte pour qu'elle soit visible */
     background-color: #A8D5BA;
 }
 
@@ -279,26 +352,35 @@ body {
 
 
 .account {
-    display: flex; /* Permet d'aligner l'image et le texte */
-    align-items: center; /* Centre verticalement l'image et le texte */
-    margin-left: 50px; /* Espace entre les liens et le compte client */
+    display: flex;
+    /* Permet d'aligner l'image et le texte */
+    align-items: center;
+    /* Centre verticalement l'image et le texte */
+    margin-left: 50px;
+    /* Espace entre les liens et le compte client */
     background-color: #A8D5BA;
 }
 
 
 .account a {
-    display: flex; /* Utiliser flex pour centrer le texte par rapport à l'image */
-    align-items: center; /* Centre verticalement le texte avec l'image */
-    text-decoration: none; /* Supprime le soulignement du lien */
-    color: white; /* Change la couleur du texte pour qu'elle soit visible */
+    display: flex;
+    /* Utiliser flex pour centrer le texte par rapport à l'image */
+    align-items: center;
+    /* Centre verticalement le texte avec l'image */
+    text-decoration: none;
+    /* Supprime le soulignement du lien */
+    color: white;
+    /* Change la couleur du texte pour qu'elle soit visible */
 }
 
 
 
 
 .account-icon {
-    max-width: 80px; /* Taille de l'icône (augmentée) */
-    margin-right: 10px; /* Espace entre l'icône et le texte (augmenté) */
+    max-width: 80px;
+    /* Taille de l'icône (augmentée) */
+    margin-right: 10px;
+    /* Espace entre l'icône et le texte (augmenté) */
     background-color: #A8D5BA;
 }
 
@@ -323,7 +405,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0px;
-   
+
 }
 
 
@@ -341,7 +423,7 @@ body {
     align-items: center;
     margin-top: 65px;
     margin-left: 270px;
-   
+
 }
 
 
@@ -351,7 +433,8 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
-    margin-right: 10px; /* Espace entre le champ de recherche et le bouton */
+    margin-right: 10px;
+    /* Espace entre le champ de recherche et le bouton */
     background-color: #FFF;
 }
 
@@ -394,7 +477,8 @@ body {
 .product-list {
     margin-left: 270px;
     display: flex;
-    flex-wrap: wrap; /* Permet d'aligner les éléments et de revenir à la ligne */
+    flex-wrap: wrap;
+    /* Permet d'aligner les éléments et de revenir à la ligne */
     padding: 20px;
     gap: 20px;
     overflow-y: auto;
@@ -410,7 +494,6 @@ body {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
-
 
 
 
