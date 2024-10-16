@@ -1,4 +1,18 @@
+body {
+    background-color: #FFF3D4; /* Couleur de fond pour le corps */
+    margin: 0; /* Supprime la marge par défaut */
+    min-height: 100vh; /* Prend toute la hauteur de la fenêtre */
+    display: flex;
+    flex-direction: column; /* Permet au footer de se placer en bas */
+}
+
+.container {
+    flex: 1; /* Permet à la zone de contenu de prendre tout l'espace restant */
+}
+
 .navbar {
+
+
     display: flex;
     justify-content: space-between; /* Change pour distribuer l'espace */
     align-items: center;
@@ -105,6 +119,7 @@
     padding: 10px 15px; /* Espacement intérieur */
     display: inline-block; /* Permet à l'élément de s'ajuster à son contenu */
     margin: 10px 0; /* Espace au-dessus et en dessous */
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 
@@ -178,6 +193,7 @@
     cursor: pointer; /* Change le curseur au survol */
     transition: background-color 0.3s; /* Ajoute une transition pour le survol */
     margin-top: 15px; /* Espace au-dessus du bouton */
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .rent-button:hover {
@@ -185,14 +201,13 @@
 }
 
 
-
 footer {
-    text-align: center; /* Centre le texte */
-    background-color: rgba(168, 213, 186, 0.5); /* Couleur de fond */
+    background-color: #41403F; /* Couleur de fond pour le footer */
     color: white; /* Couleur du texte */
+    text-align: center; /* Centre le texte */
     padding: 15px 0; /* Espacement vertical */
-    margin-top: 40px; /* Espace au-dessus du footer (ajustez cette valeur si nécessaire) */
 }
+
 
 * {
     background-color: #FFF3D4;
