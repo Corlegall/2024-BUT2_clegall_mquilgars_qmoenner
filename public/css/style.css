@@ -17,9 +17,10 @@
 .nav-links {
     list-style: none; /* Supprime les puces de la liste */
     display: flex; /* Aligne les éléments de la liste en ligne */
-    gap: 50px; /* Espacement entre les liens */
+    gap: 130px; /* Espacement entre les liens */
     flex-grow: 1; /* Permet à la liste de prendre tout l'espace disponible */
     justify-content: center; /* Centre les liens horizontalement */
+    font-size: 25px; /* Ajustez la taille de police ici */
 }
 
 .nav-links a {
@@ -41,6 +42,7 @@
     display: flex; /* Permet d'aligner l'image et le texte */
     align-items: center; /* Centre verticalement l'image et le texte */
     margin-left: 50px; /* Espace entre les liens et le compte client */
+    font-size: 24px; /* Ajustez la taille de police ici */
 }
 
 .account a {
