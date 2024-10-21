@@ -35,9 +35,17 @@
                 <!-- Gestion des utilisateurs -->
                 <div class="info-section">
                     <p class="title">Gestion des utilisateurs</p>
-                    <button class="rent-button">Ajouter un utilisateur</button>
-                    <button class="rent-button">Supprimer un utilisateur</button>
+                    <form action="#" method="post" class="user-form">
+                        <input type="text" name="prenom" placeholder="Prénom" required style="width: 50%; padding: 10px; margin-right: 2%;">
+                        <input type="text" name="nom" placeholder="Nom" required style="width: 50%; padding: 10px; margin-top: 1%;">
+                        <div style="margin-top: 10px;">
+                            <button class="rent-button" type="submit">Ajouter un utilisateur</button>
+                            <button class="rent-button" type="button">Supprimer un utilisateur</button>
+                        </div>
+                    </form>
                 </div>
+                
+                
 
                 <!-- Formulaire pour envoyer un message à l'équipe technique -->
                 <div class="info-section">
