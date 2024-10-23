@@ -1,8 +1,101 @@
 <header>
-    <ul class="Accueil">
-        <li><a href="index.ejs">Accueil</a></li>
-        <li><a href="catalogue.ejs">Catalogue</a></li>
-        <li><a href="contact.ejs">Contact</a></li>
-        <li><a href="connexion.ejs">Connexion</a></li>
-    </ul>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="img/Logo_locafit.png" alt="Logo" class="logo-image">
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.ejs">Accueil</a></li>
+            <li><a href="catalogue.ejs">Catalogue</a></li>
+            <li><a href="">Vos Locations</a></li>
+        </ul>        
+        <div class="compte">
+            <a href="compte.html" class="compte-container">
+                <img src="img/profil.png" alt="Compte Client" class="Compte-Client">
+                <div class="nom-compte">
+                    <span class="prenom-header">Cathy</span>
+                    <span class="nom-header">Le Prince</span>
+                </div>
+            </a>
+        </div>
+    </nav>
 </header>
+
+
+
+<style>
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A8D5BA;
+    padding: 10px 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+.logo {
+    margin-right: 100px;
+}
+
+.logo-image {
+    max-width: 100px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 50px;
+    flex-grow: 1;
+    justify-content: center;
+    background-color: #A8D5BA;
+    font-size: 25px;
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    background-color: #A8D5BA;
+}
+
+.compte {
+    display: flex;
+    align-items: center; 
+    padding-right: 220px;
+}
+
+.compte-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.Compte-Client {
+    max-width: 60px; 
+    border-radius: 50%; 
+    margin-right: 10px; 
+}
+
+.nom-compte {
+    display: flex;
+    flex-direction: column; 
+    color: white;
+    text-align: left;
+}
+
+.prenom-header {
+    font-size: 26px;
+}
+
+.nom-header {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+</style>
