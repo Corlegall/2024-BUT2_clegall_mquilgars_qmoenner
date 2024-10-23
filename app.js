@@ -36,11 +36,11 @@ app.get('/produits', function (req, res) {
 });
 
 app.get('/administration', function (req, res) {
-  res.render('produits');
+  res.render('administration');
 });
 
 app.get('/contact', function (req, res) {
-  res.render('produits');
+  res.render('contact');
 });
 
 app.post('/login', async function (req, res) {
