@@ -43,6 +43,10 @@ app.get('/contact', function (req, res) {
   res.render('contact');
 });
 
+app.get('/location', function (req, res) {
+  res.render('location');
+});
+
 app.post('/login', async function (req, res) {
   const login = req.body.login;
   const mdp = req.body.password;
