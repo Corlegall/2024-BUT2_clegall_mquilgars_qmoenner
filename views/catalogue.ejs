@@ -13,7 +13,7 @@
 
     <nav class="navbar">
         <div class="logo">
-            <img src="image/Logo_locafit (1).png" alt="Logo" class="logo-image">
+            <img src="img/Logo_locafit (1).png" alt="Logo" class="logo-image">
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Accueil</a></li>
@@ -42,11 +42,89 @@
     </div>
 
 
-    <!-- barre de recherche -->
-    <div class="search-container">
-        <input type="text" id="searchBar" placeholder="Rechercher un produit...">
-        <button id="searchBtn">Rechercher</button>
-    </div>
+   
+  <style>
+    .search-container {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 800px;
+      background-color: white;
+      margin-left: 27%;    
+}
+
+    #searchBar {
+      padding: 10px;
+      font-size: 16px;
+      flex: 1; /* Le champ de recherche occupe tout l'espace disponible */
+      border: none;
+      outline: none;
+      height: 500%;
+    }
+
+    #searchBtn {
+      padding: 8px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      margin-left: 5px;
+      border-radius: 3px;
+    }
+
+    #searchBtn:hover {
+      background-color: #45a049;
+    }
+
+    .sort-dropdown {
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+      background-color: #A8D5BA;
+      margin-left: 5px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    
+  </style>
+</head>
+<body>
+  <div class="search-container">
+    <input type="text" id="searchBar" placeholder="Rechercher un produit...">
+    <!-- Le bouton pour trier -->
+    <select class="sort-dropdown" id="sortMenu">
+      <option value="default">Trier par...</option>
+      <option value="priceAsc">Prix : croissant</option>
+      <option value="priceDesc">Prix : décroissant</option>
+      <option value="popularity">Popularité</option>
+      <option value="rating">Meilleures notes</option>
+    </select>
+    <button id="searchBtn">🔍</button> <!-- Bouton de recherche plus petit -->
+  </div>
+
+
+  <!--
+  <script>
+    // Script pour gérer le tri et la recherche
+    document.getElementById("searchBtn").addEventListener("click", function() {
+      let query = document.getElementById("searchBar").value;
+      let sortOption = document.getElementById("sortMenu").value;
+
+      // Simuler une recherche et afficher le tri choisi
+      console.log("Recherche pour : " + query);
+      console.log("Tri par : " + sortOption);
+
+      // Tu pourrais utiliser ces valeurs pour filtrer et trier les résultats sur ton site
+    });
+  </script>
+-->
+
 
 
 
