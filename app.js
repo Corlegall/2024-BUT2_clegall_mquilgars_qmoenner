@@ -35,6 +35,14 @@ app.get('/produits', function (req, res) {
   res.render('produits');
 });
 
+app.get('/administration', function (req, res) {
+  res.render('administration');
+});
+
+app.get('/contact', function (req, res) {
+  res.render('contact');
+});
+
 app.post('/login', async function (req, res) {
   const login = req.body.login;
   const mdp = req.body.password;
