@@ -43,6 +43,10 @@ app.get('/contact', function (req, res) {
   res.render('contact');
 });
 
+app.get('/gestion', function (req, res) {
+  res.render('gestion');
+});
+
 app.get('/location', function (req, res) {
   res.render('location');
 });
