@@ -17,6 +17,7 @@
             font-family: 'Poppins', sans-serif;
             color: white;
             background-color: #FFF3D4;
+            height: 100%;
         }
 
         /* Le paragraphe */
@@ -64,12 +65,13 @@
             max-width: 737px;
             margin: 0;
             overflow: hidden;
-            max-height: 827px;
+            max-height: 1936px;
             position: absolute;
             right: 0;
             top: 0;
             transform: translateY(-50%);
-            padding-top: 1078px;
+            z-index: 1;
+            padding-top: 1080px;
 
         }
 
@@ -78,6 +80,7 @@
             width: 737px;
             height: 827px;
             object-fit: cover;
+            z-index: 1;
         }
 
         .slider-1 .slider {
@@ -150,3 +153,5 @@
             </div>
         </div>
         <%- include('footer') %>
+
+</body>
