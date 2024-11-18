@@ -34,16 +34,12 @@
 
 
     <div class="container">
-
         <h1>Gestion des Utilisateurs</h1>
-
-
+    
         <div class="actions">
             <button class="btn" id="addUserBtn">Ajouter un utilisateur</button>
-            <button class="btn" id="editUserBtn">Modifier un utilisateur</button>
-            <button class="btn" id="deleteUserBtn">Supprimer un utilisateur</button>
         </div>
-
+    
         <table class="user-table">
             <thead>
                 <tr>
@@ -54,44 +50,47 @@
                     <th>Actions</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="userTableBody">
                 <tr>
                     <td>1</td>
                     <td>Jean Dupont</td>
                     <td>jean.dupont@email.com</td>
                     <td>Admin</td>
                     <td>
-                        <button class="btn add">Ajouter</button>
-                        <button class="btn edit">Modifier</button>
-                        <button class="btn delete">Supprimer</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Marie Lemoine</td>
-                    <td>marie.lemoine@email.com</td>
-                    <td>Utilisateur</td>
-                    <td>
-                        <button class="btn add">Ajouter</button>
-                        <button class="btn edit">Modifier</button>
-                        <button class="btn delete">Supprimer</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Lucas Martin</td>
-                    <td>lucas.martin@email.com</td>
-                    <td>Utilisateur</td>
-                    <td>
-                        <button class="btn add">Ajouter</button>
                         <button class="btn edit">Modifier</button>
                         <button class="btn delete">Supprimer</button>
                     </td>
                 </tr>
             </tbody>
-            
         </table>
     </div>
+    
+    <!-- Modal pour Ajouter / Modifier -->
+    <div id="userModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Ajouter un utilisateur</h2>
+            <form id="userForm">
+                <label for="userId">ID:</label>
+                <input type="text" id="userId" name="userId" disabled>
+    
+                <label for="userName">Nom:</label>
+                <input type="text" id="userName" name="userName" required>
+    
+                <label for="userEmail">Email:</label>
+                <input type="email" id="userEmail" name="userEmail" required>
+    
+                <label for="userRole">Rôle:</label>
+                <select id="userRole" name="userRole" required>
+                    <option value="Utilisateur">Utilisateur</option>
+                    <option value="Admin">Admin</option>
+                </select>
+    
+                <button type="submit" class="btn">Valider</button>
+            </form>
+        </div>
+    </div>
+    
 
 
 
@@ -296,6 +295,55 @@
 
 .user-table .add:hover {
     background-color: #1976D2;
+}
+
+
+/* Modale */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Boutons */
+.btn.edit {
+    background-color: #4CAF50;
+}
+
+.btn.edit:hover {
+    background-color: #45a049;
+}
+
+.btn.delete {
+    background-color: #f44336;
+}
+
+.btn.delete:hover {
+    background-color: #e53935;
 }
 
 
