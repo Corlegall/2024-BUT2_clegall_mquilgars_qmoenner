@@ -27,61 +27,12 @@ function setImage(src) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    const addUserBtn = document.getElementById('addUserBtn');
-    const addUserModal = document.getElementById('addUserModal');
-    const closeModal = document.querySelector('.close');
-    const addUserForm = document.getElementById('addUserForm');
-    const userTableBody = document.querySelector('.user-table tbody');
+    const addButtons = document.querySelectorAll('.btn.add');
 
-    // Ouvrir la modale
-    addUserBtn.addEventListener('click', () => {
-        addUserModal.style.display = 'flex';
-    });
-
-    // Fermer la modale
-    closeModal.addEventListener('click', () => {
-        addUserModal.style.display = 'none';
-    });
-
-    // Soumission du formulaire
-    addUserForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Récupérer les valeurs du formulaire
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const role = document.getElementById('role').value;
-
-        // Générer un nouvel ID (id auto-incrémental basé sur le nombre de lignes)
-        const newId = userTableBody.rows.length + 1;
-
-        // Ajouter une nouvelle ligne dans la table
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-            <td>${newId}</td>
-            <td>${name}</td>
-            <td>${email}</td>
-            <td>${role}</td>
-            <td>
-                <button class="btn edit">Modifier</button>
-                <button class="btn delete">Supprimer</button>
-            </td>
-        `;
-
-        userTableBody.appendChild(newRow);
-
-        // Réinitialiser le formulaire
-        addUserForm.reset();
-
-        // Fermer la modale
-        addUserModal.style.display = 'none';
-    });
-
-    // Fermer la modale si on clique en dehors
-    window.addEventListener('click', (e) => {
-        if (e.target === addUserModal) {
-            addUserModal.style.display = 'none';
-        }
+    addButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            alert('Ajouter un utilisateur : fonctionnalité à implémenter');
+        });
     });
 });
 
