@@ -7,32 +7,13 @@
     <title>location</title>   
 </head>
 <body>
+    <%- include('header') %>
 
-
-    <nav class="navbar">
-        <div class="logo">
-            <img src="img/Logo_locafit.png" alt="Logo" class="logo-image">
-        </div>
-        <ul class="nav-links">
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="produits.html">Produits</a></li>
-            <li><a href="locations.html">Vos Locations</a></li>
-        </ul>        
-        <div class="account">
-            <a href="compte.html">
-                <img src="img/profil.png" alt="Compte Client" class="account-icon">Cathy LePrince
-            </a>
-        </div>
-       
-    </nav>
-   
-</head>
-<body>
     <!-- Liste de produits -->
     <div class="product-list">
 
 
-        <h1 class="presentation">Starter pack<br>voila les location que vous avez fait sur LocFit
+        <h1 class="presentation">voila les location que vous avez fait sur LocFit
         </h1>
 
         <!-- 40 produits -->
@@ -55,6 +36,8 @@
             <div class="product-description">tout retard sera sanctionner par une interdiction de daber pendans 5 ans et 6 mois de cramptées d'intérets généraux</div>
         </div>
 
+
+        
 </body>
 
 
@@ -67,110 +50,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #FFF3D4;
 }
-
-
-    
-
-
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    /* Change pour distribuer l'espace */
-    align-items: center;
-    background-color: #A8D5BA;
-    /* Couleur de fond */
-    padding: 10px 20px;
-    /* Espacement intérieur */
-}
-
-
-.logo {
-    margin-right: 100px;
-    /* Espace entre le logo et les liens (augmenté) */
-}
-
-
-.logo-image {
-    max-width: 100px;
-    /* Taille maximale du logo */
-}
-
-
-.nav-links {
-    list-style: none;
-    /* Supprime les puces de la liste */
-    display: flex;
-    /* Aligne les éléments de la liste en ligne */
-    gap: 50px;
-    /* Espacement entre les liens */
-    flex-grow: 1;
-    /* Permet à la liste de prendre tout l'espace disponible */
-    justify-content: center;
-    /* Centre les liens horizontalement */
-    background-color: #A8D5BA;
-}
-
-
-.nav-links a {
-    display: flex;
-    /* Utilise flex pour centrer le texte */
-    align-items: center;
-    /* Centre verticalement le texte */
-    color: white;
-    /* Change la couleur du texte */
-    text-decoration: none;
-    /* Supprime le soulignement */
-    padding: 10px 15px;
-    /* Ajoute de l'espacement autour du lien */
-    background-color: #A8D5BA;
-}
-
-
-.account a {
-    display: flex;
-    /* Utilise flex pour centrer le texte */
-    align-items: center;
-    /* Centre verticalement le texte */
-    color: white;
-    /* Change la couleur du texte pour qu'elle soit visible */
-    background-color: #A8D5BA;
-}
-
-
-
-
-.account {
-    display: flex;
-    /* Permet d'aligner l'image et le texte */
-    align-items: center;
-    /* Centre verticalement l'image et le texte */
-    margin-left: 50px;
-    /* Espace entre les liens et le compte client */
-    background-color: #A8D5BA;
-}
-
-
-.account a {
-    display: flex;
-    /* Utiliser flex pour centrer le texte par rapport à l'image */
-    align-items: center;
-    /* Centre verticalement le texte avec l'image */
-    text-decoration: none;
-    /* Supprime le soulignement du lien */
-    color: white;
-    /* Change la couleur du texte pour qu'elle soit visible */
-}
-
-
-
-
-.account-icon {
-    max-width: 80px;
-    /* Taille de l'icône (augmentée) */
-    margin-right: 10px;
-    /* Espace entre l'icône et le texte (augmenté) */
-    background-color: #A8D5BA;
-}
+   
 
 
 .presentation {
@@ -233,6 +113,8 @@ body {
     border-radius: 15px;
     width: 45%;
     text-align: center;
+    padding: 3px;
+
 }
 
 /* Description du produit */
@@ -240,7 +122,9 @@ body {
     font-size: 14px;
     color: #555;
     margin-top: 10px;
-    background-color: #FFF3D4;
+    padding: 3px;
+    border-radius: 1px;
+
 }
 
 /* Effet au survol */
