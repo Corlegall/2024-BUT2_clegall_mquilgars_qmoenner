@@ -51,6 +51,11 @@ app.get('/location', function (req, res) {
   res.render('location');
 });
 
+app.get('/compte', function (req, res) {
+  res.render('compte');
+});
+
+
 app.post('/login', async function (req, res) {
   const login = req.body.login;
   const mdp = req.body.password;
