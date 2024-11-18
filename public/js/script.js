@@ -125,4 +125,32 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.user-table tbody tr').forEach(attachRowEvents);
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const userTableBody = document.getElementById('userTableBody');
+    const viewModal = document.getElementById('viewModal');
+    const closeViewModal = viewModal.querySelector('.close');
+
+    const viewId = document.getElementById('viewId');
+    const viewName = document.getElementById('viewName');
+    const viewEmail = document.getElementById('viewEmail');
+    const viewRole = document.getElementById('viewRole');
+
+    // Fermer la modale "Afficher"
+    closeViewModal.addEventListener('click', () => {
+        viewModal.style.display = 'none';
+    });
+
+    // Gestion du bouton "Afficher"
+    userTableBody.addEventListener('click', (e) => {
+        if (e.target.classList.contains('view')) {
+            const row = e.target.closest('tr');
+            viewId.textContent = row.cells[0].textContent;
+            viewName.textContent = row.cells[1].textContent;
+            viewEmail.textContent = row.cells[2].textContent;
+            viewRole.textContent = row.cells[3].textContent;
+            viewModal.style.display = 'flex';
+        }
+    });
+});
+
 

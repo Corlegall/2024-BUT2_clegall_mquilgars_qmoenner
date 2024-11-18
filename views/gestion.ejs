@@ -57,38 +57,26 @@
                     <td>jean.dupont@email.com</td>
                     <td>Admin</td>
                     <td>
+                        <button class="btn view">Afficher</button>
                         <button class="btn edit">Modifier</button>
                         <button class="btn delete">Supprimer</button>
                     </td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    
-    <!-- Modal pour Ajouter / Modifier -->
-    <div id="userModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 id="modalTitle">Ajouter un utilisateur</h2>
-            <form id="userForm">
-                <label for="userId">ID:</label>
-                <input type="text" id="userId" name="userId" disabled>
-    
-                <label for="userName">Nom:</label>
-                <input type="text" id="userName" name="userName" required>
-    
-                <label for="userEmail">Email:</label>
-                <input type="email" id="userEmail" name="userEmail" required>
-    
-                <label for="userRole">Rôle:</label>
-                <select id="userRole" name="userRole" required>
-                    <option value="Utilisateur">Utilisateur</option>
-                    <option value="Admin">Admin</option>
-                </select>
-    
-                <button type="submit" class="btn">Valider</button>
-            </form>
+        
+        <!-- Modal pour afficher les détails -->
+        <div id="viewModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Détails de l'utilisateur</h2>
+                <p><strong>ID:</strong> <span id="viewId"></span></p>
+                <p><strong>Nom:</strong> <span id="viewName"></span></p>
+                <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+                <p><strong>Rôle:</strong> <span id="viewRole"></span></p>
+            </div>
         </div>
+        
     </div>
     
 
@@ -294,6 +282,14 @@
 }
 
 .user-table .add:hover {
+    background-color: #1976D2;
+}
+
+.user-table .view {
+    background-color: #2196F3;
+}
+
+.user-table .view:hover {
     background-color: #1976D2;
 }
 
