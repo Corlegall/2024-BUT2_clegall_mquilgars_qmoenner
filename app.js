@@ -19,10 +19,6 @@ app.get('/', async function (req, res) {
   res.render('index', { user });
 });
 
-
-
-
-
 app.get('/login', function (req, res) {
   res.render('login', { error: null });
 });
