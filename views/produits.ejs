@@ -47,11 +47,32 @@
                     Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
                     meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
                     facile.</p>
-                <button class="rent-button">Louer</button>
+                <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
+
             </div>
         </section>
 
     </div>
+
+    <div class="booking-form">
+        <label for="startDate">Date de début :</label>
+        <input type="date" id="startDate" name="startDate" required>
+        
+        <label for="endDate">Date de fin :</label>
+        <input type="date" id="endDate" name="endDate" required>
+        
+        <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
+        <p id="pricePreview">Prix prévisionnel : <span id="priceOutput">--,-- €</span></p>
+    </div>
+
+    <section class="active-rentals">
+        <h2>Vos Locations Actives</h2>
+        <ul id="rentalList">
+            <!-- Les locations seront ajoutées ici dynamiquement -->
+        </ul>
+    </section>
+    
+    
     <footer>
         <p>&copy; Contact & Condition d’utilisation
             2024 LocaFit - Tous droits réservés</p>
