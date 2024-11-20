@@ -18,8 +18,16 @@
                         <input type="submit" value="Connexion" />
                     </form>
                 </main>
-                <p class="message">Pas encore inscrit ? <a href="/views/register.ejs">Créer un compte</a></p>
-                <p class="message">Mot de passe oublié ? <a href="">Envoyer un e-mail</a></p>
+                <p class="message">Pas encore inscrit ? <a href="/compte">Créer un compte</a></p>
+
+                <p class="message">Mot de passe oublié ? <a href="" id="emailNotif">Envoyer un e-mail</a></p>
+
+                <script>
+                    document.getElementById("emailNotif").addEventListener("click", (event) => {
+                        event.preventDefault(); 
+                        alert("E-mail envoyé !");
+                    });
+                </script>
                 </form>
             </div>
         </div>
@@ -43,7 +51,7 @@
         font-family: Arial, sans-serif;
     }
 
- .connexion {
+    .connexion {
         width: 360px;
         padding: 8% 0 0;
         margin: auto;
