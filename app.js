@@ -1,12 +1,16 @@
 const express = require('express');
 const app = express();
 const usrModel = require('./models/user.js');
-
 const session = require('express-session');
-app.set('view engine', 'ejs');
 const md5 = require('md5');
 
+app.set('view engine', 'ejs');
+
 app.use(express.static('public'));
+
+app.use(express.urlencoded({ extended: true }));
+
+
 app.use(session({
   secret: 'OOF',
   resave: false,
@@ -14,78 +18,51 @@ app.use(session({
 }));
 
 
-app.get('/', async function (req, res) {
+app.get('/', async (req, res) => {
   const user = await usrModel.getUserById(2);
   res.render('index', { user });
 });
 
-app.get('/login', function (req, res) {
+app.get('/login', (req, res) => {
   res.render('login', { error: null });
 });
 
-app.get('/catalogue', function (req, res) {
-  res.render('catalogue');
-});
+app.post('/login', async (req, res) => {
+  try {
+    const login = req.body.login;
+    const mdp = req.body.password;
 
-app.get('/produits', function (req, res) {
-  res.render('produits');
-});
+    if (!login || !mdp) {
+      return res.render('login', { error: "Veuillez remplir tous les champs." });
+    }
 
-app.get('/administration', function (req, res) {
-  res.render('administration');
-});
+    const user = await usrModel.checkLogin(login);
 
-app.get('/contact', function (req, res) {
-  res.render('contact');
-});
+    if (user && user.password === md5(mdp)) {
+      req.session.userId = user.id;  
+      req.session.role = user.type_utilisateur; 
+      return res.redirect('/index');
+    }
 
-app.get('/gestion', function (req, res) {
-  res.render('gestion');
-});
-
-app.get('/location', function (req, res) {
-  res.render('location');
-});
-
-app.get('/compte', function (req, res) {
-  res.render('compte');
-});
-
-
-app.post('/login', async function (req, res) {
-  const login = req.body.login;
-  const mdp = req.body.password;
-
-  const user = await usrModel.checkLogin(login);
-
-  if (user != false && user.password == md5(mdp)) {
-    req.session.userId = user.id; 
-    req.session.role = user.type_utilisateur; 
-    return res.redirect("/");
+    res.render('login', { error: "Identifiant ou mot de passe incorrect." });
+  } catch (err) {
+    console.error("Erreur lors de la connexion :", err);
+    res.render('login', { error: "Une erreur s'est produite, veuillez réessayer." });
   }
-}); 
-
-
-app.post('/login', async function (req, res) {
-  const login = req.body.login;
-  const mdp = req.body.password;
-
-  const user = await usrModel.checkLogin(login); 
-
-  if (user != false && user.password == md5(mdp)) {
-    req.session.userid = user.id;  
-    req.session.role = user.type_utilisateur;
-    return res.redirect("/");
-  }
-
-  res.render('login', { error: "Erreur dans le login/mdp" });
 });
 
+app.get('/catalogue', (req, res) => res.render('catalogue'));
+app.get('/produits', (req, res) => res.render('produits'));
+app.get('/administration', (req, res) => res.render('administration'));
+app.get('/contact', (req, res) => res.render('contact'));
+app.get('/gestion', (req, res) => res.render('gestion'));
+app.get('/location', (req, res) => res.render('location'));
+app.get('/compte', (req, res) => res.render('compte'));
 
-app.use(function (req, res) {
+app.use((req, res) => {
   res.status(404).render('404');
 });
 
-app.listen(3000, function () {
-  console.log('server running on port 3000');
+app.listen(3000, () => {
+  console.log('Server running on port 3000');
 });
