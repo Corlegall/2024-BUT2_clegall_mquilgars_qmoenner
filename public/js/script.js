@@ -320,3 +320,89 @@ async function cancelRental(rentalId) {
         alert("Une erreur est survenue.");
     }
 }
+
+
+//Réduction atomatique 
+
+// Prix journalier
+const dailyPrice = 89.9;
+
+document.getElementById("rentalForm").addEventListener("input", calculatePrice);
+
+function calculatePrice() {
+    const startDate = new Date(document.getElementById("startDate").value);
+    const endDate = new Date(document.getElementById("endDate").value);
+
+    if (!isNaN(startDate) && !isNaN(endDate) && endDate >= startDate) {
+        const days = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
+        let totalPrice = dailyPrice * days;
+
+        // Appliquer une réduction de 10% si la durée est supérieure à 7 jours
+        if (days > 7) {
+            totalPrice *= 0.9; // Réduction de 10%
+        }
+
+        document.getElementById("totalPriceDisplay").textContent =
+            `Prix total : ${totalPrice.toFixed(2)} € (${days} jours)`;
+    } else {
+        document.getElementById("totalPriceDisplay").textContent = "Prix total : --";
+    }
+}
+
+//Back end
+document.getElementById("rentalForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    try {
+        const response = await fetch("/api/rentals", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ startDate, endDate }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            alert(`Réservation confirmée ! Prix total : ${result.totalPrice} €`);
+        } else {
+            alert(result.message || "Une erreur est survenue.");
+        }
+    } catch (error) {
+        console.error("Erreur lors de la réservation :", error);
+        alert("Une erreur est survenue.");
+    }
+});
+
+//back end pour calculer le prix
+
+app.post("/api/rentals", async (req, res) => {
+    const { startDate, endDate } = req.body;
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end) || end < start) {
+        return res.status(400).json({ message: "Dates invalides." });
+    }
+
+    const days = (end - start) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
+    const dailyPrice = 89.9;
+    let totalPrice = dailyPrice * days;
+
+    // Appliquer la réduction si la durée est supérieure à 7 jours
+    if (days > 7) {
+        totalPrice *= 0.9; // Réduction de 10%
+    }
+
+    // Enregistrer la réservation dans la base de données
+    const rental = await Rental.create({
+        startDate,
+        endDate,
+        totalPrice,
+    });
+
+    res.json({ message: "Réservation réussie", totalPrice });
+});

@@ -13,70 +13,92 @@
 
 
 
-    <div class="container">
-        <header>
-            <h1>Location de Matériel</h1>
-        </header>
+        <div class="container">
+            <header>
+                <h1>Location de Matériel</h1>
+            </header>
 
-        <section class="product">
-            <div class="image-gallery">
-                <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
-                <img id="mainImage" src="img/tapis-de-course.jpeg" alt="Tapis de course" class="product-image">
-                <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
-            </div>
-            <div class="thumbnail-gallery">
-                <img src="img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail"
-                    onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail"
-                    onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail"
-                    onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail"
-                    onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail"
-                    onclick="setImage(this.src)">
-            </div>
-            <div class="product-details">
-                <div class="title-container">
-                    <h2>TAPIS DE COURSE CONNECTE RUN500</h2>
+            <section class="product">
+                <div class="image-gallery">
+                    <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="mainImage" src="img/tapis-de-course.jpeg" alt="Tapis de course" class="product-image">
+                    <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
                 </div>
-                <p class="price">89,9€ / mois</p>
-                <p class="descr">Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un
-                    produit
-                    performant en usage et facile à ranger après l'entraînement.
-                    Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
-                    meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
-                    facile.</p>
-                <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
+                <div class="thumbnail-gallery">
+                    <img src="img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail"
+                        onclick="setImage(this.src)">
+                </div>
+                <div class="product-details">
+                    <div class="title-container">
+                        <h2>TAPIS DE COURSE CONNECTE RUN500</h2>
+                    </div>
+                    <p class="price">89,9€ / mois</p>
+                    <p class="descr">Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un
+                        produit
+                        performant en usage et facile à ranger après l'entraînement.
+                        Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
+                        meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
+                        facile.</p>
+                    <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
 
-            </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="booking-form">
+            <label for="startDate">Date de début :</label>
+            <input type="date" id="startDate" name="startDate" required>
+
+            <label for="endDate">Date de fin :</label>
+            <input type="date" id="endDate" name="endDate" required>
+
+            <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
+            <p id="pricePreview">Prix prévisionnel : <span id="priceOutput">--,-- €</span></p>
+        </div>
+
+        <section class="active-rentals">
+            <h2>Vos Locations Actives</h2>
+            <ul id="rentalList">
+                <!-- Les locations seront ajoutées ici dynamiquement -->
+            </ul>
         </section>
 
-    </div>
-
-    <div class="booking-form">
-        <label for="startDate">Date de début :</label>
-        <input type="date" id="startDate" name="startDate" required>
+        <section class="rental-form">
+            <h2>Réserver un produit</h2>
+            <form id="rentalForm">
+                <label for="startDate">Date de début :</label>
+                <input type="date" id="startDate" name="startDate" required>
         
-        <label for="endDate">Date de fin :</label>
-        <input type="date" id="endDate" name="endDate" required>
+                <label for="endDate">Date de fin :</label>
+                <input type="date" id="endDate" name="endDate" required>
         
-        <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
-        <p id="pricePreview">Prix prévisionnel : <span id="priceOutput">--,-- €</span></p>
-    </div>
+                <p id="totalPriceDisplay">Prix total : --</p>
+                <button type="submit">Valider la réservation</button>
+            </form>
+        </section>
+        
+        <section class="rental-summary">
+            <h2>Résumé de la location</h2>
+            <p>Produit : Tapis de course RUN500</p>
+            <p>Dates : Du <span id="summaryStartDate">--</span> au <span id="summaryEndDate">--</span></p>
+            <p>Prix total : <span id="summaryPrice">--</span> €</p>
+        </section>
+        
 
-    <section class="active-rentals">
-        <h2>Vos Locations Actives</h2>
-        <ul id="rentalList">
-            <!-- Les locations seront ajoutées ici dynamiquement -->
-        </ul>
-    </section>
-    
-    
-    <footer>
-        <p>&copy; Contact & Condition d’utilisation
-            2024 LocaFit - Tous droits réservés</p>
-    </footer>
+
+        <footer>
+            <p>&copy; Contact & Condition d’utilisation
+                2024 LocaFit - Tous droits réservés</p>
+        </footer>
 </body>
 
 <style>
