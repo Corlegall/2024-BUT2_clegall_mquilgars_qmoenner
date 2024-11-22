@@ -15,21 +15,20 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
-        }
+            background-color: #FFF3D4;        }
 
         .container {
             display: flex;
-            flex-direction: row;
+            flex-direction: column; /* Change ici pour des colonnes */
             gap: 20px;
-            overflow-x: auto;
             padding: 20px;
             width: 90%;
             box-sizing: border-box;
+            overflow-y: auto; /* Permet un défilement vertical si nécessaire */
         }
 
         .card {
-            min-width: 300px;
+            width: 100%; /* Ajuste la largeur des cartes */
             height: 400px;
             background-color: white;
             border: 1px solid #ddd;
@@ -37,116 +36,201 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             overflow-y: auto;
             padding: 10px;
+            margin-top: 100px;
+            text-align: center;
         }
 
+        #card1{
+            background-color: #45a049;
+            margin-top: 1700px;
+      
+            
+        }
+        #card2{
+            background-color: #e41d5f;
+        }
+        #card3{
+            background-color: #4553a0;
+        }
+        #card4{
+            background-color: #9845a0;
+            
+        }
+        .rectangles {
+            display: grid; /* Grille pour disposer les rectangles */
+            grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+            gap: 10px; /* Espacement entre les rectangles */
+        }
         .rectangle {
             width: 100%;
-            height: 100px;
+            height: 200px;
             margin-bottom: 10px;
+            margin-top: 100px;
             background-color: #ececec;
             display: flex;
             justify-content: center;
             align-items: center;
             border: 1px solid #ccc;
+
+            
         }
 
         .rectangle:last-child {
             margin-bottom: 0;
         }
 
-
         .search-container {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 100%;
-      max-width: 800px;
-      background-color: white;
-      margin-bottom: 20px;
-}
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
 
-    #searchBar {
-      padding: 10px;
-      font-size: 16px;
-      flex: 1; /* Le champ de recherche occupe tout l'espace disponible */
-      border: none;
-      outline: none;
-      height: 500%;
-      background-color: #fff;
-    }
+        #searchBar {
+            padding: 10px;
+            font-size: 16px;
+            flex: 1; /* Le champ de recherche occupe tout l'espace disponible */
+            border: none;
+            outline: none;
+            height: 500%;
+            background-color: #fff;
+        }
 
-    #searchBtn {
-      padding: 8px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 5px;
-      border-radius: 3px;
-    }
+        #searchBtn {
+            padding: 8px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 5px;
+            border-radius: 3px;
+        }
 
-    #searchBtn:hover {
-      background-color: #45a049;
-    }
+        #searchBtn:hover {
+            background-color: #45a049;
+        }
 
-    .sort-dropdown {
-      padding: 8px;
-      font-size: 14px;
-      border: none;
-      background-color: #A8D5BA;
-      margin-left: 5px;
-      cursor: pointer;
-    }
+        .sort-dropdown {
+            padding: 8px;
+            font-size: 14px;
+            border: none;
+            background-color: #A8D5BA;
+            margin-left: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
-
+    
     <div class="container">
-        <div class="card">
-            <h1>materiel rendu par les clients</h1>
+        <div class="card"id="card1">
+            <h1>Réservation en cours</h1>
             <div class="search-container">
                 <input type="text" id="searchBar" placeholder="Rechercher un produit...">
-                <!-- Le bouton pour trier -->
                 <select class="sort-dropdown" id="sortMenu">
-                  <option value="default">Trier par...</option>
-                  <option value="priceAsc">Prix : croissant</option>
-                  <option value="priceDesc">Prix : décroissant</option>
-                  <option value="popularity">Popularité</option>
-                  <option value="rating">Meilleures notes</option>
+                    <option value="default">Trier par...</option>
+                    <option value="priceAsc">Prix : croissant</option>
+                    <option value="priceDesc">Prix : décroissant</option>
+                    <option value="popularity">Popularité</option>
+                    <option value="rating">Meilleures notes</option>
                 </select>
-                <button id="searchBtn">🔍</button> <!-- Bouton de recherche plus petit -->
-              </div>
+                <button id="searchBtn">🔍</button>
+            </div>
+
+            <div class="rectangles">
+
+            <div class="rectangle">Texte 1</div>
+            <div class="rectangle">Texte 2</div>
+            <div class="rectangle">Texte 3</div>
+            <div class="rectangle">Texte 4</div>
+            <div class="rectangle">Texte 5</div>
+
+        </div>
+
+        </div>
+        <div class="card"id="card2">
+            
+            <h1>Matériel rendu par les clients</h1>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Rechercher un produit...">
+                <select class="sort-dropdown" id="sortMenu">
+                    <option value="default">Trier par...</option>
+                    <option value="priceAsc">Prix : croissant</option>
+                    <option value="priceDesc">Prix : décroissant</option>
+                    <option value="popularity">Popularité</option>
+                    <option value="rating">Meilleures notes</option>
+                </select>
+                <button id="searchBtn">🔍</button>
+            </div>
+
+            <div class="rectangles">
+
             <div class="rectangle">Texte 1</div>
             <div class="rectangle">Texte 2</div>
             <div class="rectangle">Texte 3</div>
             <div class="rectangle">Texte 4</div>
             <div class="rectangle">Texte 5</div>
         </div>
-        <div class="card">
+
+        </div>
+        <div class="card"id="card3">
+            <h1>Ajouter un produit</h1>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Rechercher un produit...">
+                <select class="sort-dropdown" id="sortMenu">
+                    <option value="default">Trier par...</option>
+                    <option value="priceAsc">Prix : croissant</option>
+                    <option value="priceDesc">Prix : décroissant</option>
+                    <option value="popularity">Popularité</option>
+                    <option value="rating">Meilleures notes</option>
+                </select>
+                <button id="searchBtn">🔍</button>
+            </div>
+
+            <div class="rectangles">
+
             <div class="rectangle">Texte 1</div>
             <div class="rectangle">Texte 2</div>
             <div class="rectangle">Texte 3</div>
             <div class="rectangle">Texte 4</div>
             <div class="rectangle">Texte 5</div>
         </div>
-        <div class="card">
+
+        </div>
+    
+        <div class="card"id="card4">
+            
+            <h1>Supprimer un produit</h1>
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Rechercher un produit...">
+                <select class="sort-dropdown" id="sortMenu">
+                    <option value="default">Trier par...</option>
+                    <option value="priceAsc">Prix : croissant</option>
+                    <option value="priceDesc">Prix : décroissant</option>
+                    <option value="popularity">Popularité</option>
+                    <option value="rating">Meilleures notes</option>
+                </select>
+                <button id="searchBtn">🔍</button>
+            </div>
+
+            <div class="rectangles">
+
+
             <div class="rectangle">Texte 1</div>
             <div class="rectangle">Texte 2</div>
             <div class="rectangle">Texte 3</div>
             <div class="rectangle">Texte 4</div>
             <div class="rectangle">Texte 5</div>
         </div>
-        <div class="card">
-            <div class="rectangle">Texte 1</div>
-            <div class="rectangle">Texte 2</div>
-            <div class="rectangle">Texte 3</div>
-            <div class="rectangle">Texte 4</div>
-            <div class="rectangle">Texte 5</div>
+
         </div>
     </div>
 </body>
