@@ -41,7 +41,7 @@ app.post('/login', async (req, res) => {
     if (user && user.password === md5(mdp)) {
       req.session.userId = user.id;  
       req.session.role = user.type_utilisateur; 
-      return res.redirect('/index');
+      return res.redirect('/');
     }
 
     res.render('login', { error: "Identifiant ou mot de passe incorrect." });
