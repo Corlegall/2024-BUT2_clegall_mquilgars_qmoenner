@@ -54,6 +54,19 @@
 
         </div>
 
+        // Ajout des champs pour la sélection des dates //
+        <div class="rental-form">
+            <label for="startDate">Date de début :</label>
+            <input type="date" id="startDate" name="startDate">
+
+            <label for="endDate">Date de fin :</label>
+            <input type="date" id="endDate" name="endDate">
+
+            <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
+            <p id="pricePreview">Prix prévisionnel : -</p>
+        </div>
+
+
 
 
         <footer>
@@ -331,6 +344,50 @@
     .rent-button:hover {
         background-color: #e0b3b1;
         /* Change la couleur au survol */
+    }
+
+    /* pour le formulaire*/
+
+    .rental-form {
+        margin-top: 20px;
+        background-color: rgba(240, 240, 240, 0.8);
+        border-radius: 10px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        width: 80%;
+        max-width: 600px;
+    }
+
+    .rental-form label {
+        font-size: 18px;
+        margin-right: 10px;
+    }
+
+    .rental-form input {
+        padding: 5px;
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .calculate-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        font-size: 16px;
+    }
+
+    .calculate-button:hover {
+        background-color: #2980b9;
+    }
+
+    #pricePreview {
+        margin-top: 10px;
+        font-size: 18px;
+        font-weight: bold;
     }
 
 

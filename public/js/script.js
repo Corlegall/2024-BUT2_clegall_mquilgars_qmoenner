@@ -148,3 +148,109 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.user-table tbody tr').forEach(attachRowEvents);
 });
 
+
+
+// pour calculer le prix et vérifier la disponibilité
+
+const dailyRate = 89.9; // Tarif par jour
+
+function calculatePrice() {
+    const startDate = new Date(document.getElementById('startDate').value);
+    const endDate = new Date(document.getElementById('endDate').value);
+
+    if (isNaN(startDate) || isNaN(endDate)) {
+        alert("Veuillez sélectionner des dates valides.");
+        return;
+    }
+
+    if (startDate > endDate) {
+        alert("La date de début doit être antérieure à la date de fin.");
+        return;
+    }
+
+    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // Inclure le premier jour
+    const totalPrice = days * dailyRate;
+
+    document.getElementById('pricePreview').textContent = `Prix prévisionnel : ${totalPrice.toFixed(2)} €`;
+}
+
+function rentProduct() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+
+    if (!startDate || !endDate) {
+        alert("Veuillez sélectionner des dates pour louer le produit.");
+        return;
+    }
+
+    // Simuler une vérification de disponibilité
+    const isAvailable = true; // Remplacer par un appel serveur si nécessaire
+
+    if (isAvailable) {
+        alert(`Produit loué avec succès du ${startDate} au ${endDate}.`);
+    } else {
+        alert("Le produit n'est pas disponible aux dates demandées.");
+    }
+}
+
+
+// Backend pour vérifier la disponibilité et finaliser la location
+
+app.post('/check-availability', (req, res) => {
+    const { startDate, endDate } = req.body;
+
+    // Exemple : Vérification dans une base de données
+    const productId = req.query.productId;
+    const isAvailable = checkProductAvailability(productId, startDate, endDate); // Fonction fictive
+
+    res.json({ isAvailable });
+});
+
+app.post('/rent-product', (req, res) => {
+    const { startDate, endDate, productId } = req.body;
+
+    // Enregistrer la location dans la base de données
+    const rental = createRental(productId, startDate, endDate);
+
+    res.json({ success: true, rental });
+});
+
+
+// Connecter le frontend au backend
+
+async function rentProduct() {
+    const startDate = document.getElementById('startDate').value;
+    const endDate = document.getElementById('endDate').value;
+
+    if (!startDate || !endDate) {
+        alert("Veuillez sélectionner des dates pour louer le produit.");
+        return;
+    }
+
+    const response = await fetch('/check-availability', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ startDate, endDate })
+    });
+
+    const data = await response.json();
+
+    if (data.isAvailable) {
+        const rentResponse = await fetch('/rent-product', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ startDate, endDate, productId: 1 }) // Exemple d'ID de produit
+        });
+
+        const rentData = await rentResponse.json();
+
+        if (rentData.success) {
+            alert(`Produit loué avec succès du ${startDate} au ${endDate}.`);
+        } else {
+            alert("Erreur lors de la location. Veuillez réessayer.");
+        }
+    } else {
+        alert("Le produit n'est pas disponible aux dates demandées.");
+    }
+}
+
