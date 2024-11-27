@@ -202,6 +202,12 @@ function calculatePrice() {
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
     const predictedPrice = (diffDays * dailyPrice).toFixed(2);
 
+     // Appliquer la réduction de 10% si la durée est strictement supérieure à 7 jours
+     if (diffDays > 7) {
+        const discount = 0.10; // 10% de réduction
+        predictedPrice = (predictedPrice * (1 - discount)).toFixed(2);
+    }
+
     // Vérifier la disponibilité
     if (checkAvailability(start, end)) {
         document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
