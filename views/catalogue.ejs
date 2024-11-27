@@ -16,7 +16,7 @@
 
         <div class="search-container">
             <input type="text" id="searchBar" placeholder="Rechercher un produit...">
-            <!-- Le bouton pour trier -->
+            <!-- bouton pour trier -->
             <select class="sort-dropdown" id="sortMenu">
                 <option value="default">Trier par...</option>
                 <option value="priceAsc">Prix : croissant</option>
@@ -24,10 +24,10 @@
                 <option value="popularity">Popularité</option>
                 <option value="rating">Meilleures notes</option>
             </select>
-            <button id="searchBtn">🔍</button> <!-- Bouton de recherche plus petit -->
+            <button id="searchBtn">🔍</button>
         </div>
 
-        <!-- Bandeau latéral avec les boutons -->
+        <!-- Bandeau latéral -->
         <div class="sidebar">
             <button id="customBtn">Starter pack</button>
             <button id="customBtn">Nouvelle offre</button>
@@ -35,23 +35,6 @@
             <button id="customBtn">Nutrition</button>
             <button id="customBtn">Accessoires</button>
         </div>
-
-        <!--
-  <script>
-    // Script pour gérer le tri et la recherche
-    document.getElementById("searchBtn").addEventListener("click", function() {
-      let query = document.getElementById("searchBar").value;
-      let sortOption = document.getElementById("sortMenu").value;
-
-      // Simuler une recherche et afficher le tri choisi
-      console.log("Recherche pour : " + query);
-      console.log("Tri par : " + sortOption);
-
-      // Tu pourrais utiliser ces valeurs pour filtrer et trier les résultats sur ton site
-    });
-  </script>
--->
-
 
 
 
@@ -62,8 +45,12 @@
 
             <h1 class="categorie">Starter pack</h1>
 
-
             <!-- produits -->
+            
+
+
+
+            
             <div class="product-item">
                 <img src="https://via.placeholder.com/200" alt="Produit 1">
                 <div class="container_info">
@@ -72,14 +59,9 @@
                 </div>
                 <div class="product-description">Description du produit 1.</div>
             </div>
-            <div class="product-item">
-                <img src="https://via.placeholder.com/200" alt="Produit 1">
-                <div class="container_info">
-                     <div class="product-price">20€</div>
-                    <div class="product-title">Produit 1</div>
-                </div>
-                <div class="product-description">Description du produit 1.</div>
-            </div>
+
+
+
             <div class="product-item">
                 <img src="https://via.placeholder.com/200" alt="Produit 1">
                 <div class="container_info">
@@ -163,7 +145,6 @@
 
 <style>
     body {
-        color: blueviolet;
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
