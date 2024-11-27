@@ -150,48 +150,51 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// pour calculer le prix et vérifier la disponibilité
-
-const dailyRate = 89.9; // Tarif par jour
+// Gestion du calcul du prix prévisionnel
 
 function calculatePrice() {
-    const startDate = new Date(document.getElementById('startDate').value);
-    const endDate = new Date(document.getElementById('endDate').value);
+    const pricePerMonth = 89.9; // Prix mensuel
+    const dailyPrice = pricePerMonth / 30; // Approximatif, divisé par 30 jours
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
 
-    if (isNaN(startDate) || isNaN(endDate)) {
-        alert("Veuillez sélectionner des dates valides.");
+    // Vérification de la validité des dates
+    if (!startDate || !endDate) {
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
         return;
     }
 
-    if (startDate > endDate) {
-        alert("La date de début doit être antérieure à la date de fin.");
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (end < start) {
+        alert("La date de fin doit être après la date de début.");
         return;
     }
 
-    const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1; // Inclure le premier jour
-    const totalPrice = days * dailyRate;
+    // Calculer le nombre de jours
+    const diffTime = end - start;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir le temps en jours
 
-    document.getElementById('pricePreview').textContent = `Prix prévisionnel : ${totalPrice.toFixed(2)} €`;
+    // Calculer le prix prévisionnel
+    const predictedPrice = (diffDays * dailyPrice).toFixed(2);
+
+    // Afficher le prix prévisionnel
+    document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
 }
 
 function rentProduct() {
-    const startDate = document.getElementById('startDate').value;
-    const endDate = document.getElementById('endDate').value;
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
 
     if (!startDate || !endDate) {
-        alert("Veuillez sélectionner des dates pour louer le produit.");
+        alert("Veuillez sélectionner des dates de début et de fin pour la location.");
         return;
     }
 
-    // Simuler une vérification de disponibilité
-    const isAvailable = true; // Remplacer par un appel serveur si nécessaire
-
-    if (isAvailable) {
-        alert(`Produit loué avec succès du ${startDate} au ${endDate}.`);
-    } else {
-        alert("Le produit n'est pas disponible aux dates demandées.");
-    }
+    alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
 }
+
 
 
 // Backend pour vérifier la disponibilité et finaliser la location
