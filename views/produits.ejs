@@ -11,60 +11,65 @@
 <body>
     <%- include('header') %>
 
-    <div class="container">
-        <header>
-            <h1>Location de Matériel</h1>
-        </header>
+        <div class="container">
+            <header>
+                <h1>Location de Matériel</h1>
+            </header>
 
-        <section class="product">
-            <div class="image-gallery">
-                <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
-                <img id="mainImage" src="img/tapis-de-course.jpeg" alt="Tapis de course" class="product-image">
-                <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
-            </div>
-            <div class="thumbnail-gallery">
-                <img src="img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail" onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail" onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail" onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail" onclick="setImage(this.src)">
-                <img src="img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail" onclick="setImage(this.src)">
-            </div>
-            <div class="product-details">
-                <div class="title-container">
-                    <h2>TAPIS DE COURSE CONNECTE RUN500</h2>
+            <section class="product">
+                <div class="image-gallery">
+                    <button class="nav-button" onclick="changeImage(-1)">&#10094;</button>
+                    <img id="mainImage" src="img/tapis-de-course.jpeg" alt="Tapis de course" class="product-image">
+                    <button class="nav-button" onclick="changeImage(1)">&#10095;</button>
                 </div>
-                <p class="price">89,9€ / mois</p>
-                <p class="descr">Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un
-                    produit performant en usage et facile à ranger après l'entraînement.
-                    Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
-                    meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
-                    facile.</p>
-
-                <div class="date-selection">
-                    <label for="startDate">Date de début :</label>
-                    <input type="date" id="startDate" onchange="calculatePrice()" />
-
-                    <label for="endDate">Date de fin :</label>
-                    <input type="date" id="endDate" onchange="calculatePrice()" />
+                <div class="thumbnail-gallery">
+                    <img src="img/tapis-de-course.jpeg" alt="Tapis de course" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-2.jpeg" alt="Tapis de course 2" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-3.jpeg" alt="Tapis de course 3" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-4.jpeg" alt="Tapis de course 4" class="thumbnail"
+                        onclick="setImage(this.src)">
+                    <img src="img/tapis-de-course-5.jpeg" alt="Tapis de course 5" class="thumbnail"
+                        onclick="setImage(this.src)">
                 </div>
+                <div class="product-details">
+                    <div class="title-container">
+                        <h2>TAPIS DE COURSE CONNECTE RUN500</h2>
+                    </div>
+                    <p class="price">89,9€ / mois</p>
+                    <p class="descr">Le tapis de course RUN500 a été conçu pour les sportifs exigeants qui souhaitent un
+                        produit performant en usage et facile à ranger après l'entraînement.
+                        Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
+                        meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
+                        facile.</p>
 
-                <p id="availabilityMessage" class="availability-message">
-                    Le produit est disponible.
-                </p>
+                    <div class="date-selection">
+                        <label for="startDate">Date de début :</label>
+                        <input type="date" id="startDate" onchange="calculatePrice()" />
 
-                <p id="predictedPrice" class="predicted-price">
-                    Prix prévisionnel : 0€
-                </p>
+                        <label for="endDate">Date de fin :</label>
+                        <input type="date" id="endDate" onchange="calculatePrice()" />
+                    </div>
 
-                <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
-            </div>
-        </section>
-    </div>
+                    <p id="availabilityMessage" class="availability-message">
+                        Le produit est disponible.
+                    </p>
 
-    <footer>
-        <p>&copy; Contact & Condition d’utilisation
-            2024 LocaFit - Tous droits réservés</p>
-    </footer>
+                    <p id="predictedPrice" class="predicted-price">
+                        Prix prévisionnel : 0€
+                    </p>
+
+                    <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <p>&copy; Contact & Condition d’utilisation
+                2024 LocaFit - Tous droits réservés</p>
+        </footer>
 </body>
 
 <style>
