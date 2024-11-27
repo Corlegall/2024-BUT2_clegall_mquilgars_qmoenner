@@ -47,10 +47,26 @@
                         Tapis de course performant allant jusqu'à 16km/h et inclinaison motorisée à 10%, connecté aux
                         meilleures applications de pratique. Sans montage et avec un pliage compact pour un rangement
                         facile.</p>
-                    <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
 
+                    <!-- Sélection de dates -->
+                    <div class="date-selection">
+                        <label for="startDate">Date de début :</label>
+                        <input type="date" id="startDate" onchange="calculatePrice()" />
+
+                        <label for="endDate">Date de fin :</label>
+                        <input type="date" id="endDate" onchange="calculatePrice()" />
+                    </div>
+
+                    <!-- Prix prévisionnel -->
+                    <p id="predictedPrice" class="predicted-price">
+                        Prix prévisionnel : 0€
+                    </p>
+
+                    <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
                 </div>
-            </section>
+
+        </div>
+        </section>
 
         </div>
 
@@ -348,47 +364,34 @@
 
     /* pour le formulaire*/
 
-    .rental-form {
-        margin-top: 20px;
-        background-color: rgba(240, 240, 240, 0.8);
-        border-radius: 10px;
-        padding: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        width: 80%;
-        max-width: 600px;
-    }
+    .date-selection {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
-    .rental-form label {
-        font-size: 18px;
-        margin-right: 10px;
-    }
+.date-selection label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    .rental-form input {
-        padding: 5px;
-        font-size: 16px;
-        margin: 10px 0;
-    }
+input[type="date"] {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
-    .calculate-button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        padding: 10px 20px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-        font-size: 16px;
-    }
+.predicted-price {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #3498db;
+}
 
-    .calculate-button:hover {
-        background-color: #2980b9;
-    }
-
-    #pricePreview {
-        margin-top: 10px;
-        font-size: 18px;
-        font-weight: bold;
-    }
 
 
     footer {
