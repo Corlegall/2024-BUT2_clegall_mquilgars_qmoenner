@@ -54,45 +54,6 @@
 
         </div>
 
-        <div class="booking-form">
-            <label for="startDate">Date de début :</label>
-            <input type="date" id="startDate" name="startDate" required>
-
-            <label for="endDate">Date de fin :</label>
-            <input type="date" id="endDate" name="endDate" required>
-
-            <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
-            <p id="pricePreview">Prix prévisionnel : <span id="priceOutput">--,-- €</span></p>
-        </div>
-
-        <section class="active-rentals">
-            <h2>Vos Locations Actives</h2>
-            <ul id="rentalList">
-                <!-- Les locations seront ajoutées ici dynamiquement -->
-            </ul>
-        </section>
-
-        <section class="rental-form">
-            <h2>Réserver un produit</h2>
-            <form id="rentalForm">
-                <label for="startDate">Date de début :</label>
-                <input type="date" id="startDate" name="startDate" required>
-        
-                <label for="endDate">Date de fin :</label>
-                <input type="date" id="endDate" name="endDate" required>
-        
-                <p id="totalPriceDisplay">Prix total : --</p>
-                <button type="submit">Valider la réservation</button>
-            </form>
-        </section>
-        
-        <section class="rental-summary">
-            <h2>Résumé de la location</h2>
-            <p>Produit : Tapis de course RUN500</p>
-            <p>Dates : Du <span id="summaryStartDate">--</span> au <span id="summaryEndDate">--</span></p>
-            <p>Prix total : <span id="summaryPrice">--</span> €</p>
-        </section>
-        
 
 
         <footer>
