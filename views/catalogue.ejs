@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>catalogue</title>   
+    <title>catalogue</title>
 </head>
+
 <body>
 
     <%- include('header') %>
 
 
-   
-  <div class="search-container">
-    <input type="text" id="searchBar" placeholder="Rechercher un produit...">
-    <!-- Le bouton pour trier -->
-    <select class="sort-dropdown" id="sortMenu">
-      <option value="default">Trier par...</option>
-      <option value="priceAsc">Prix : croissant</option>
-      <option value="priceDesc">Prix : décroissant</option>
-      <option value="popularity">Popularité</option>
-      <option value="rating">Meilleures notes</option>
-    </select>
-    <button id="searchBtn">🔍</button> <!-- Bouton de recherche plus petit -->
-  </div>
 
-  <!-- Bandeau latéral avec les boutons -->
-  <div class="sidebar">
-    <button id="customBtn">Starter pack</button>
-    <button id="customBtn">Nouvelle offre</button>
-    <button id="customBtn">Yoga</button>
-    <button id="customBtn">Nutrition</button>
-    <button id="customBtn">Accessoires</button>
-</div>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Rechercher un produit...">
+            <!-- Le bouton pour trier -->
+            <select class="sort-dropdown" id="sortMenu">
+                <option value="default">Trier par...</option>
+                <option value="priceAsc">Prix : croissant</option>
+                <option value="priceDesc">Prix : décroissant</option>
+                <option value="popularity">Popularité</option>
+                <option value="rating">Meilleures notes</option>
+            </select>
+            <button id="searchBtn">🔍</button> <!-- Bouton de recherche plus petit -->
+        </div>
 
-  <!--
+        <!-- Bandeau latéral avec les boutons -->
+        <div class="sidebar">
+            <button id="customBtn">Starter pack</button>
+            <button id="customBtn">Nouvelle offre</button>
+            <button id="customBtn">Yoga</button>
+            <button id="customBtn">Nutrition</button>
+            <button id="customBtn">Accessoires</button>
+        </div>
+
+        <!--
   <script>
     // Script pour gérer le tri et la recherche
     document.getElementById("searchBtn").addEventListener("click", function() {
@@ -54,500 +56,105 @@
 
 
 
-    <!-- Liste de produits -->
-    <div class="product-list">
+        <!-- Liste de produits -->
+        <div class="product-list">
 
 
-        <h1 class="categorie">Starter pack</h1>
+            <h1 class="categorie">Starter pack</h1>
 
 
-        <!-- 40 produits -->
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 1">
-
-            <div class="container_info">            
-
-            <div class="product-price">20€</div>
-            <div class="product-title">Produit 1</div>
-
-        </div>
-            <div class="product-description">Description du produit 1.</div>
-        </div>
-       
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>            <div class="product-price">25€</div>
-
-
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-        <div class="product-item">
-            <img src="https://via.placeholder.com/200" alt="Produit 2">
-            <div class="product-title">Produit 2</div>
-            <div class="product-price">25€</div>
-            <div class="product-description">Description du produit 2.</div>
-        </div>
-
-
-<h1 class="categorie">Nouvelle_offre</h1>
-
-
-
-
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 1">
-    <div class="product-title">Produit 1</div>
-    <div class="product-price">20€</div>
-    <div class="product-description">Description du produit 1.</div>
-</div>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-
-
-<h1 class="categorie">Fitness</h1>
+            <!-- produits -->
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
+            <div class="product-item">
+                <img src="https://via.placeholder.com/200" alt="Produit 1">
+                <div class="container_info">
+                     <div class="product-price">20€</div>
+                    <div class="product-title">Produit 1</div>
+                </div>
+                <div class="product-description">Description du produit 1.</div>
+            </div>
 
 
 
-
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 1">
-    <div class="product-title">Produit 1</div>
-    <div class="product-price">20€</div>
-    <div class="product-description">Description du produit 1.</div>
-</div>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-
-
-<h1 class="categorie">Fitness</h1>
-
-
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 1">
-    <div class="product-title">Produit 1</div>
-    <div class="product-price">20€</div>
-    <div class="product-description">Description du produit 1.</div>
-</div>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-
-
-<h1 class="categorie">Fitness</h1>
-
-
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 1">
-    <div class="product-title">Produit 1</div>
-    <div class="product-price">20€</div>
-    <div class="product-description">Description du produit 1.</div>
-</div>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-
-
-<h1 class="categorie">Fitness</h1>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 1">
-    <div class="product-title">Produit 1</div>
-    <div class="product-price">20€</div>
-    <div class="product-description">Description du produit 1.</div>
-</div>
-
-
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
-<div class="product-item">
-    <img src="https://via.placeholder.com/200" alt="Produit 2">
-    <div class="product-title">Produit 2</div>
-    <div class="product-price">25€</div>
-    <div class="product-description">Description du produit 2.</div>
-</div>
 
 
 </body>
@@ -555,190 +162,189 @@
 
 
 <style>
+    body {
+        color: blueviolet;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #FFF3D4;
+    }
 
-
-
-body {
-    color: blueviolet;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #FFF3D4;
-}
-.search-container {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 100%;
-      max-width: 800px;
-      background-color: white;
-      margin-left: 27%;    
-      margin-top: 170px;
-}
+    .search-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 800px;
+        background-color: white;
+        margin-left: 27%;
+        margin-top: 170px;
+    }
 
     #searchBar {
-      padding: 10px;
-      font-size: 16px;
-      flex: 1; /* Le champ de recherche occupe tout l'espace disponible */
-      border: none;
-      outline: none;
-      height: 500%;
-      background-color: #fff;
+        padding: 10px;
+        font-size: 16px;
+        flex: 1;
+        /* Le champ de recherche occupe tout l'espace disponible */
+        border: none;
+        outline: none;
+        height: 500%;
+        background-color: #fff;
     }
 
     #searchBtn {
-      padding: 8px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 14px;
-      margin-left: 5px;
-      border-radius: 3px;
+        padding: 8px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        margin-left: 5px;
+        border-radius: 3px;
     }
 
     #searchBtn:hover {
-      background-color: #45a049;
+        background-color: #45a049;
     }
 
     .sort-dropdown {
-      padding: 8px;
-      font-size: 14px;
-      border: none;
-      background-color: #A8D5BA;
-      margin-left: 5px;
-      cursor: pointer;
+        padding: 8px;
+        font-size: 14px;
+        border: none;
+        background-color: #A8D5BA;
+        margin-left: 5px;
+        cursor: pointer;
     }
 
-    
-
-
-
-
-.categorie {
-    margin-left: 40%;
-    margin-right: 40%;
-    margin-top: 10%;
-    margin-bottom: 10%;
-}
-
-
-/* Bandeau latéral à gauche */
-.sidebar {
-    background-color: #A8D5BA;
-    width: 200px;
-    height: 100vh;
-    position: fixed;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    top: 0;
-}
-
-
-#customBtn {
-    margin-top: 25px;
-
-
-}
-.sidebar button {
-    background-color: #c97c77;
-    color: black;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-
-}
-
-
-.sidebar button:hover {
-    background-color: #F4C6C3;
-    transform: translateY(-3px);
-}
-
-
-/* Conteneur pour la liste de produits */
-.product-list {
-    margin-left: 270px;
-    display: flex;
-    flex-wrap: wrap;
-    /* Permet d'aligner les éléments et de revenir à la ligne */
-    padding: 20px;
-    gap: 20px;
-    overflow-y: auto;
-    
-}
-
-
-/* cartes de produits */
-.product-item {
-    background-color: #A8D5BA;
-    border-radius: 10px;
-    width: 200px;
-    padding: 15px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-
-
-
-/* Style du carré contenant le prix */
-.product-price {
-    background-color: #c97c77;
-    color: white;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    width: 50px;
-    text-align: center;
-}
-
-
-/* Style pour le titre du produit */
-.product-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 20px;
-    margin-top: 6px;
-    flex-grow: 1;
-    background-color: #A8D5BA;
-}
-
-.container_info {
-    display: flex;
-    justify-content: space-between; /* ou center, flex-start, etc. */
-    background-color: #A8D5BA;
-}
 
 
 
 
 
-/* Description du produit */
-.product-description {
-    font-size: 14px;
-    color: #555;
-    margin-top: 10px;
-    background-color: #A8D5BA;
-}
+    .categorie {
+        margin-left: 40%;
+        margin-right: 40%;
+        margin-top: 10%;
+        margin-bottom: 10%;
+    }
 
 
-/* Effet au survol */
-.product-item:hover {
-    transform: scale(1.05); /* Agrandissement */    
-}
+    /* Bandeau latéral à gauche */
+    .sidebar {
+        background-color: #A8D5BA;
+        width: 200px;
+        height: 100vh;
+        position: fixed;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0px;
+        top: 0;
+    }
+
+
+    #customBtn {
+        margin-top: 25px;
+
+
+    }
+
+    .sidebar button {
+        background-color: #c97c77;
+        color: black;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+
+    }
+
+
+    .sidebar button:hover {
+        background-color: #F4C6C3;
+        transform: translateY(-3px);
+    }
+
+
+    /* Conteneur pour la liste de produits */
+    .product-list {
+        margin-left: 270px;
+        display: flex;
+        flex-wrap: wrap;
+        /* Permet d'aligner les éléments et de revenir à la ligne */
+        padding: 20px;
+        gap: 20px;
+        overflow-y: auto;
+
+    }
+
+
+    /* cartes de produits */
+    .product-item {
+        background-color: #A8D5BA;
+        border-radius: 10px;
+        width: 200px;
+        padding: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
 
 
 
- /* FIN DE LA PAGE CATALOGUE */
+
+    /* Style du carré contenant le prix */
+    .product-price {
+        background-color: #c97c77;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        width: 50px;
+        text-align: center;
+    }
+
+
+    /* Style pour le titre du produit */
+    .product-title {
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 20px;
+        margin-top: 6px;
+        flex-grow: 1;
+        background-color: #A8D5BA;
+    }
+
+    .container_info {
+        display: flex;
+        justify-content: space-between;
+        /* ou center, flex-start, etc. */
+        background-color: #A8D5BA;
+    }
+
+
+
+
+
+    /* Description du produit */
+    .product-description {
+        font-size: 14px;
+        color: #555;
+        margin-top: 10px;
+        background-color: #A8D5BA;
+    }
+
+
+    /* Effet au survol */
+    .product-item:hover {
+        transform: scale(1.05);
+        /* Agrandissement */
+    }
+
 </style>
 
 </html>
