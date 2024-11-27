@@ -149,260 +149,196 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// page produit disponibilité date
 
-// Prix par jour
-const dailyRate = 89.9;
-
-function calculatePrice() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
-
-    // Vérifie si les dates sont valides
-    if (startDate && endDate && startDate <= endDate) {
-        const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertit en jours
-
-        // Calcule le prix prévisionnel
-        const totalPrice = (diffDays * dailyRate).toFixed(2);
-        document.getElementById("priceOutput").textContent = `${totalPrice} €`;
-    } else {
-        alert("Veuillez entrer des dates valides.");
-    }
-}
-
-// Fonction pour vérifier la disponibilité (simulée ici)
-function checkAvailability(startDate, endDate) {
-    // Simule un appel au serveur pour vérifier les disponibilités
-    const unavailableDates = [
-        { start: "2024-11-25", end: "2024-11-30" },
-    ];
-
-    const isUnavailable = unavailableDates.some(dateRange => {
-        const rangeStart = new Date(dateRange.start);
-        const rangeEnd = new Date(dateRange.end);
-        return (startDate <= rangeEnd && endDate >= rangeStart);
-    });
-
-    return !isUnavailable; // Disponible si aucune collision
-}
-
-function rentProduct() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
-
-    if (!checkAvailability(startDate, endDate)) {
-        alert("Désolé, le produit n'est pas disponible aux dates sélectionnées.");
-        return;
-    }
-
-    const price = document.getElementById("priceOutput").textContent;
-    alert(`Votre réservation est confirmée du ${startDate.toLocaleDateString()} au ${endDate.toLocaleDateString()}. Prix total : ${price}`);
-}
-
-async function checkAvailabilityAPI(startDate, endDate) {
-    try {
-        const response = await fetch('/api/checkAvailability', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ startDate, endDate }),
-        });
-        const data = await response.json();
-        return data.isAvailable;
-    } catch (error) {
-        console.error('Erreur lors de la vérification de la disponibilité:', error);
-        return false;
-    }
-}
-
-
-// page produit annulation réservation
-
-// Simule les locations du client
-const rentals = [
-    { id: 1, product: "Tapis de course RUN500", startDate: "2024-12-01", endDate: "2024-12-15", price: 179.8 },
-    { id: 2, product: "Vélo elliptique", startDate: "2024-11-15", endDate: "2024-11-30", price: 89.9 },
+// Exemple de réservation existante (stockée dans un tableau)
+const existingReservations = [
+    { start: '2024-12-01', end: '2024-12-10' },
+    { start: '2024-12-15', end: '2024-12-20' }
 ];
 
-function loadRentals() {
-    const rentalList = document.getElementById("rentalList");
-    rentalList.innerHTML = ""; // Vide la liste avant de la remplir
+// Fonction pour vérifier la disponibilité
+function checkAvailability(startDate, endDate) {
+    // Parcourir toutes les réservations existantes
+    for (const reservation of existingReservations) {
+        const reservationStart = new Date(reservation.start);
+        const reservationEnd = new Date(reservation.end);
 
-    rentals.forEach(rental => {
-        const now = new Date();
-        const startDate = new Date(rental.startDate);
-
-        // Vérifie si la location peut être annulée
-        const canCancel = startDate > now;
-
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-            <strong>${rental.product}</strong><br>
-            Du ${startDate.toLocaleDateString()} au ${new Date(rental.endDate).toLocaleDateString()}<br>
-            Prix : ${rental.price.toFixed(2)} €<br>
-            ${canCancel ? `<button onclick="cancelRental(${rental.id})">Annuler</button>` : "<em>Non annulable</em>"}
-        `;
-        rentalList.appendChild(listItem);
-    });
-}
-
-// Fonction pour annuler une location
-function cancelRental(rentalId) {
-    // Recherche la location
-    const rental = rentals.find(r => r.id === rentalId);
-
-    if (!rental) {
-        alert("Location introuvable.");
-        return;
-    }
-
-    const now = new Date();
-    const startDate = new Date(rental.startDate);
-
-    // Vérifie si la location peut être annulée
-    if (startDate <= now) {
-        alert("Cette location ne peut pas être annulée, car elle a déjà commencé.");
-        return;
-    }
-
-    // Simule l'annulation
-    alert(`La location du produit "${rental.product}" a été annulée.`);
-    // Ici, vous devriez envoyer une requête au serveur pour effectuer l'annulation réelle
-    rentals.splice(rentals.indexOf(rental), 1); // Supprime la location localement
-    loadRentals(); // Recharge la liste des locations
-}
-
-// Charger les locations à l'ouverture de la page
-document.addEventListener("DOMContentLoaded", loadRentals);
-
-
-app.post("/api/cancelRental", async (req, res) => {
-    const { rentalId } = req.body;
-
-    // Rechercher la location dans la base de données
-    const rental = await Rental.findById(rentalId);
-
-    if (!rental) {
-        return res.status(404).json({ message: "Location introuvable" });
-    }
-
-    const now = new Date();
-    const startDate = new Date(rental.startDate);
-
-    // Vérifier si la location est annulable
-    if (startDate <= now) {
-        return res.status(400).json({ message: "Cette location ne peut pas être annulée, car elle a déjà commencé." });
-    }
-
-    // Annuler la location
-    await Rental.deleteOne({ _id: rentalId }); // Supprimer ou marquer comme annulée
-    res.json({ message: "Location annulée avec succès" });
-});
-
-async function cancelRental(rentalId) {
-    try {
-        const response = await fetch('/api/cancelRental', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ rentalId }),
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-            alert(result.message);
-            rentals.splice(rentals.findIndex(r => r.id === rentalId), 1); // Supprime localement
-            loadRentals(); // Recharge la liste
-        } else {
-            alert(result.message);
+        // Comparer les dates de l'utilisateur avec les réservations existantes
+        if (
+            (startDate >= reservationStart && startDate <= reservationEnd) || 
+            (endDate >= reservationStart && endDate <= reservationEnd) || 
+            (startDate <= reservationStart && endDate >= reservationEnd)
+        ) {
+            return false; // Le produit n'est pas disponible
         }
-    } catch (error) {
-        console.error("Erreur lors de l'annulation :", error);
-        alert("Une erreur est survenue.");
     }
+    return true; // Le produit est disponible
 }
 
-
-//Réduction atomatique 
-
-// Prix journalier
-const dailyPrice = 89.9;
-
-document.getElementById("rentalForm").addEventListener("input", calculatePrice);
-
+// Calcul du prix et vérification de la disponibilité
 function calculatePrice() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
-
-    if (!isNaN(startDate) && !isNaN(endDate) && endDate >= startDate) {
-        const days = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
-        let totalPrice = dailyPrice * days;
-
-        // Appliquer une réduction de 10% si la durée est supérieure à 7 jours
-        if (days > 7) {
-            totalPrice *= 0.9; // Réduction de 10%
-        }
-
-        document.getElementById("totalPriceDisplay").textContent =
-            `Prix total : ${totalPrice.toFixed(2)} € (${days} jours)`;
-    } else {
-        document.getElementById("totalPriceDisplay").textContent = "Prix total : --";
-    }
-}
-
-//Back end
-document.getElementById("rentalForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-
+    const pricePerMonth = 89.9; // Prix mensuel
+    const dailyPrice = pricePerMonth / 30; // Prix par jour
     const startDate = document.getElementById("startDate").value;
     const endDate = document.getElementById("endDate").value;
 
-    try {
-        const response = await fetch("/api/rentals", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ startDate, endDate }),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            alert(`Réservation confirmée ! Prix total : ${result.totalPrice} €`);
-        } else {
-            alert(result.message || "Une erreur est survenue.");
-        }
-    } catch (error) {
-        console.error("Erreur lors de la réservation :", error);
-        alert("Une erreur est survenue.");
+    // Vérifier si les dates sont valides
+    if (!startDate || !endDate) {
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        return;
     }
-});
-
-//back end pour calculer le prix
-
-app.post("/api/rentals", async (req, res) => {
-    const { startDate, endDate } = req.body;
 
     const start = new Date(startDate);
     const end = new Date(endDate);
 
-    if (isNaN(start) || isNaN(end) || end < start) {
-        return res.status(400).json({ message: "Dates invalides." });
+    if (end < start) {
+        alert("La date de fin doit être après la date de début.");
+        return;
     }
 
-    const days = (end - start) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
-    const dailyPrice = 89.9;
-    let totalPrice = dailyPrice * days;
+    // Calculer le prix prévisionnel
+    const diffTime = end - start;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
+    const predictedPrice = (diffDays * dailyPrice).toFixed(2);
 
-    // Appliquer la réduction si la durée est supérieure à 7 jours
-    if (days > 7) {
-        totalPrice *= 0.9; // Réduction de 10%
+     // Appliquer la réduction de 10% si la durée est strictement supérieure à 7 jours
+     if (diffDays > 7) {
+        const discount = 0.10; // 10% de réduction
+        predictedPrice = (predictedPrice * (1 - discount)).toFixed(2);
     }
 
-    // Enregistrer la réservation dans la base de données
-    const rental = await Rental.create({
-        startDate,
-        endDate,
-        totalPrice,
-    });
+    // Vérifier la disponibilité
+    if (checkAvailability(start, end)) {
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
+    } else {
+        document.getElementById("availabilityMessage").textContent = "Le produit n'est pas disponible pour ces dates.";
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+    }
+}
 
-    res.json({ message: "Réservation réussie", totalPrice });
-});
+// Fonction pour louer le produit
+function rentProduct() {
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (!startDate || !endDate) {
+        alert("Veuillez sélectionner des dates de début et de fin pour la location.");
+        return;
+    }
+
+    // Vérifier la disponibilité avant de procéder à la location
+    if (checkAvailability(new Date(startDate), new Date(endDate))) {
+        alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
+    } else {
+        alert("Le produit n'est pas disponible pour ces dates.");
+    }
+}
+
+
+
+// gestion réservation 
+
+// Fonction pour récupérer les réservations stockées dans localStorage
+function getStoredReservations() {
+    const reservations = localStorage.getItem('reservations');
+    return reservations ? JSON.parse(reservations) : [];
+}
+
+// Fonction pour enregistrer une réservation dans localStorage
+function storeReservation(reservation) {
+    const reservations = getStoredReservations();
+    reservations.push(reservation);
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+}
+
+// Fonction pour vérifier la disponibilité
+function checkAvailability(startDate, endDate) {
+    const existingReservations = getStoredReservations();
+    
+    for (const reservation of existingReservations) {
+        const reservationStart = new Date(reservation.start);
+        const reservationEnd = new Date(reservation.end);
+
+        // Vérification de chevauchement
+        if (
+            (startDate >= reservationStart && startDate <= reservationEnd) || 
+            (endDate >= reservationStart && endDate <= reservationEnd) || 
+            (startDate <= reservationStart && endDate >= reservationEnd)
+        ) {
+            return false; // Le produit n'est pas disponible
+        }
+    }
+    return true; // Le produit est disponible
+}
+
+// Calcul du prix et vérification de la disponibilité
+function calculatePrice() {
+    const pricePerMonth = 89.9; // Prix mensuel
+    const dailyPrice = pricePerMonth / 30; // Prix par jour
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    // Vérifier si les dates sont valides
+    if (!startDate || !endDate) {
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (end < start) {
+        alert("La date de fin doit être après la date de début.");
+        return;
+    }
+
+    // Calculer le prix prévisionnel
+    const diffTime = end - start;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
+    const predictedPrice = (diffDays * dailyPrice).toFixed(2);
+
+    // Vérifier la disponibilité
+    if (checkAvailability(start, end)) {
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
+    } else {
+        document.getElementById("availabilityMessage").textContent = "Le produit n'est pas disponible pour ces dates.";
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+    }
+}
+
+// Fonction pour louer le produit et stocker la réservation
+function rentProduct() {
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (!startDate || !endDate) {
+        alert("Veuillez sélectionner des dates de début et de fin pour la location.");
+        return;
+    }
+
+    // Vérifier la disponibilité avant de procéder à la location
+    if (checkAvailability(new Date(startDate), new Date(endDate))) {
+        // Enregistrer la réservation dans localStorage
+        const reservation = { start: startDate, end: endDate };
+        storeReservation(reservation);
+
+        alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
+    } else {
+        alert("Le produit n'est pas disponible pour ces dates.");
+    }
+}
+
+// Afficher toutes les réservations actuelles
+function displayReservations() {
+    const reservations = getStoredReservations();
+    console.log("Réservations enregistrées :", reservations);
+}
+
+// Initialisation : Afficher les réservations au chargement
+window.onload = displayReservations;
+
+
