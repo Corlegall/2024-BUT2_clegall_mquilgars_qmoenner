@@ -57,6 +57,11 @@
                         <input type="date" id="endDate" onchange="calculatePrice()" />
                     </div>
 
+                    <!-- Message de disponibilité -->
+                    <p id="availabilityMessage" class="availability-message">
+                        Le produit est disponible.
+                    </p>
+
                     <!-- Prix prévisionnel -->
                     <p id="predictedPrice" class="predicted-price">
                         Prix prévisionnel : 0€
@@ -64,6 +69,7 @@
 
                     <button class="rent-button" id="rentButton" onclick="rentProduct()">Louer</button>
                 </div>
+        </div>
 
         </div>
         </section>
@@ -365,32 +371,32 @@
     /* pour le formulaire*/
 
     .date-selection {
-    margin-top: 15px;
-    margin-bottom: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+        margin-top: 15px;
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
-.date-selection label {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+    .date-selection label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
-input[type="date"] {
-    padding: 5px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    input[type="date"] {
+        padding: 5px 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
-.predicted-price {
-    margin-top: 15px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #3498db;
-}
+    .predicted-price {
+        margin-top: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #3498db;
+    }
 
 
 

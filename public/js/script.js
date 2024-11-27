@@ -150,17 +150,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-// Gestion du calcul du prix prévisionnel
+// Exemple de réservation existante (stockée dans un tableau)
+const existingReservations = [
+    { start: '2024-12-01', end: '2024-12-10' },
+    { start: '2024-12-15', end: '2024-12-20' }
+];
 
+// Fonction pour vérifier la disponibilité
+function checkAvailability(startDate, endDate) {
+    // Parcourir toutes les réservations existantes
+    for (const reservation of existingReservations) {
+        const reservationStart = new Date(reservation.start);
+        const reservationEnd = new Date(reservation.end);
+
+        // Comparer les dates de l'utilisateur avec les réservations existantes
+        if (
+            (startDate >= reservationStart && startDate <= reservationEnd) || 
+            (endDate >= reservationStart && endDate <= reservationEnd) || 
+            (startDate <= reservationStart && endDate >= reservationEnd)
+        ) {
+            return false; // Le produit n'est pas disponible
+        }
+    }
+    return true; // Le produit est disponible
+}
+
+// Calcul du prix et vérification de la disponibilité
 function calculatePrice() {
     const pricePerMonth = 89.9; // Prix mensuel
-    const dailyPrice = pricePerMonth / 30; // Approximatif, divisé par 30 jours
+    const dailyPrice = pricePerMonth / 30; // Prix par jour
     const startDate = document.getElementById("startDate").value;
     const endDate = document.getElementById("endDate").value;
 
-    // Vérification de la validité des dates
+    // Vérifier si les dates sont valides
     if (!startDate || !endDate) {
         document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
         return;
     }
 
@@ -172,17 +197,22 @@ function calculatePrice() {
         return;
     }
 
-    // Calculer le nombre de jours
-    const diffTime = end - start;
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir le temps en jours
-
     // Calculer le prix prévisionnel
+    const diffTime = end - start;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
     const predictedPrice = (diffDays * dailyPrice).toFixed(2);
 
-    // Afficher le prix prévisionnel
-    document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
+    // Vérifier la disponibilité
+    if (checkAvailability(start, end)) {
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
+    } else {
+        document.getElementById("availabilityMessage").textContent = "Le produit n'est pas disponible pour ces dates.";
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+    }
 }
 
+// Fonction pour louer le produit
 function rentProduct() {
     const startDate = document.getElementById("startDate").value;
     const endDate = document.getElementById("endDate").value;
@@ -192,68 +222,12 @@ function rentProduct() {
         return;
     }
 
-    alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
-}
-
-
-
-// Backend pour vérifier la disponibilité et finaliser la location
-
-app.post('/check-availability', (req, res) => {
-    const { startDate, endDate } = req.body;
-
-    // Exemple : Vérification dans une base de données
-    const productId = req.query.productId;
-    const isAvailable = checkProductAvailability(productId, startDate, endDate); // Fonction fictive
-
-    res.json({ isAvailable });
-});
-
-app.post('/rent-product', (req, res) => {
-    const { startDate, endDate, productId } = req.body;
-
-    // Enregistrer la location dans la base de données
-    const rental = createRental(productId, startDate, endDate);
-
-    res.json({ success: true, rental });
-});
-
-
-// Connecter le frontend au backend
-
-async function rentProduct() {
-    const startDate = document.getElementById('startDate').value;
-    const endDate = document.getElementById('endDate').value;
-
-    if (!startDate || !endDate) {
-        alert("Veuillez sélectionner des dates pour louer le produit.");
-        return;
-    }
-
-    const response = await fetch('/check-availability', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ startDate, endDate })
-    });
-
-    const data = await response.json();
-
-    if (data.isAvailable) {
-        const rentResponse = await fetch('/rent-product', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ startDate, endDate, productId: 1 }) // Exemple d'ID de produit
-        });
-
-        const rentData = await rentResponse.json();
-
-        if (rentData.success) {
-            alert(`Produit loué avec succès du ${startDate} au ${endDate}.`);
-        } else {
-            alert("Erreur lors de la location. Veuillez réessayer.");
-        }
+    // Vérifier la disponibilité avant de procéder à la location
+    if (checkAvailability(new Date(startDate), new Date(endDate))) {
+        alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
     } else {
-        alert("Le produit n'est pas disponible aux dates demandées.");
+        alert("Le produit n'est pas disponible pour ces dates.");
     }
 }
+
 
