@@ -4,22 +4,22 @@
             <img src="img/Logo_locafit.png" alt="Logo" class="logo-image">
         </div>
         <ul class="nav-links">
-            <li><a href="index.ejs">Accueil</a></li>
-            <li><a href="catalogue.ejs">Catalogue</a></li>
-            <li><a href="">Vos Locations</a></li>
+            <li><a href="/">Accueil</a></li>
+            <li><a href="/catalogue">Catalogue</a></li>
+            <li><a href="/location">Vos Locations</a></li>
         </ul>        
         <div class="compte">
-            <a href="compte.html" class="compte-container">
-                <img src="img/profil.png" alt="Compte Client" class="Compte-Client">
-                <div class="nom-compte">
-                    <span class="prenom-header">Cathy</span>
-                    <span class="nom-header">Le Prince</span>
-                </div>
-            </a>
+            <% if (user) { %> <!-- Vérifie si user existe -->
+                <a href="/logout" class="compte-container"> <!-- Lien vers la déconnexion -->
+                    <div class="nom-compte">
+                        <span class="prenom-header"><%= user.prenom %></span>
+                        <span class="nom-header"><%= user.nom %></span>
+                    </div>
+                </a>
+            <% } %>
         </div>
     </nav>
 </header>
-
 
 
 <style>
