@@ -76,21 +76,6 @@
 
         </div>
 
-        // Ajout des champs pour la sélection des dates //
-        <div class="rental-form">
-            <label for="startDate">Date de début :</label>
-            <input type="date" id="startDate" name="startDate">
-
-            <label for="endDate">Date de fin :</label>
-            <input type="date" id="endDate" name="endDate">
-
-            <button class="calculate-button" onclick="calculatePrice()">Calculer le prix</button>
-            <p id="pricePreview">Prix prévisionnel : -</p>
-        </div>
-
-
-
-
         <footer>
             <p>&copy; Contact & Condition d’utilisation
                 2024 LocaFit - Tous droits réservés</p>
@@ -397,6 +382,18 @@
         font-weight: bold;
         color: #3498db;
     }
+
+    .availability-message {
+        margin-top: 10px;
+        font-size: 18px;
+        color: green;
+        font-weight: bold;
+    }
+
+    .availability-message.unavailable {
+        color: red;
+    }
+
 
 
 

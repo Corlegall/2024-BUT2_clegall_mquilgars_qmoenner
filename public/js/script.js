@@ -231,3 +231,108 @@ function rentProduct() {
 }
 
 
+
+// gestion réservation 
+
+// Fonction pour récupérer les réservations stockées dans localStorage
+function getStoredReservations() {
+    const reservations = localStorage.getItem('reservations');
+    return reservations ? JSON.parse(reservations) : [];
+}
+
+// Fonction pour enregistrer une réservation dans localStorage
+function storeReservation(reservation) {
+    const reservations = getStoredReservations();
+    reservations.push(reservation);
+    localStorage.setItem('reservations', JSON.stringify(reservations));
+}
+
+// Fonction pour vérifier la disponibilité
+function checkAvailability(startDate, endDate) {
+    const existingReservations = getStoredReservations();
+    
+    for (const reservation of existingReservations) {
+        const reservationStart = new Date(reservation.start);
+        const reservationEnd = new Date(reservation.end);
+
+        // Vérification de chevauchement
+        if (
+            (startDate >= reservationStart && startDate <= reservationEnd) || 
+            (endDate >= reservationStart && endDate <= reservationEnd) || 
+            (startDate <= reservationStart && endDate >= reservationEnd)
+        ) {
+            return false; // Le produit n'est pas disponible
+        }
+    }
+    return true; // Le produit est disponible
+}
+
+// Calcul du prix et vérification de la disponibilité
+function calculatePrice() {
+    const pricePerMonth = 89.9; // Prix mensuel
+    const dailyPrice = pricePerMonth / 30; // Prix par jour
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    // Vérifier si les dates sont valides
+    if (!startDate || !endDate) {
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        return;
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (end < start) {
+        alert("La date de fin doit être après la date de début.");
+        return;
+    }
+
+    // Calculer le prix prévisionnel
+    const diffTime = end - start;
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertir en jours
+    const predictedPrice = (diffDays * dailyPrice).toFixed(2);
+
+    // Vérifier la disponibilité
+    if (checkAvailability(start, end)) {
+        document.getElementById("availabilityMessage").textContent = "Le produit est disponible.";
+        document.getElementById("predictedPrice").textContent = `Prix prévisionnel : ${predictedPrice}€`;
+    } else {
+        document.getElementById("availabilityMessage").textContent = "Le produit n'est pas disponible pour ces dates.";
+        document.getElementById("predictedPrice").textContent = "Prix prévisionnel : 0€";
+    }
+}
+
+// Fonction pour louer le produit et stocker la réservation
+function rentProduct() {
+    const startDate = document.getElementById("startDate").value;
+    const endDate = document.getElementById("endDate").value;
+
+    if (!startDate || !endDate) {
+        alert("Veuillez sélectionner des dates de début et de fin pour la location.");
+        return;
+    }
+
+    // Vérifier la disponibilité avant de procéder à la location
+    if (checkAvailability(new Date(startDate), new Date(endDate))) {
+        // Enregistrer la réservation dans localStorage
+        const reservation = { start: startDate, end: endDate };
+        storeReservation(reservation);
+
+        alert(`Produit loué du ${startDate} au ${endDate}. Merci pour votre commande !`);
+    } else {
+        alert("Le produit n'est pas disponible pour ces dates.");
+    }
+}
+
+// Afficher toutes les réservations actuelles
+function displayReservations() {
+    const reservations = getStoredReservations();
+    console.log("Réservations enregistrées :", reservations);
+}
+
+// Initialisation : Afficher les réservations au chargement
+window.onload = displayReservations;
+
+
