@@ -152,204 +152,108 @@ document.addEventListener('DOMContentLoaded', () => {
 // page produit disponibilité date
 
 // Prix par jour
-const dailyRate = 89.9;
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
 
-function calculatePrice() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
+// Middleware pour parser JSON
+app.use(bodyParser.json());
 
-    // Vérifie si les dates sont valides
-    if (startDate && endDate && startDate <= endDate) {
-        const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // Convertit en jours
+// Données fictives de disponibilités
+const unavailableDates = [
+    { start: "2024-11-25", end: "2024-11-30" }
+];
 
-        // Calcule le prix prévisionnel
-        const totalPrice = (diffDays * dailyRate).toFixed(2);
-        document.getElementById("priceOutput").textContent = `${totalPrice} €`;
-    } else {
-        alert("Veuillez entrer des dates valides.");
+// Vérifie les disponibilités
+app.post('/api/checkAvailability', (req, res) => {
+    const { startDate, endDate } = req.body;
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end) || end < start) {
+        return res.status(400).json({ message: "Dates invalides." });
     }
-}
-
-// Fonction pour vérifier la disponibilité (simulée ici)
-function checkAvailability(startDate, endDate) {
-    // Simule un appel au serveur pour vérifier les disponibilités
-    const unavailableDates = [
-        { start: "2024-11-25", end: "2024-11-30" },
-    ];
 
     const isUnavailable = unavailableDates.some(dateRange => {
         const rangeStart = new Date(dateRange.start);
         const rangeEnd = new Date(dateRange.end);
-        return (startDate <= rangeEnd && endDate >= rangeStart);
+        return (start <= rangeEnd && end >= rangeStart);
     });
 
-    return !isUnavailable; // Disponible si aucune collision
-}
+    res.json({ isAvailable: !isUnavailable });
+});
 
-function rentProduct() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
+// Démarrage du serveur
+app.listen(3000, () => {
+    console.log('Serveur démarré sur le port 3000');
+});
 
-    if (!checkAvailability(startDate, endDate)) {
-        alert("Désolé, le produit n'est pas disponible aux dates sélectionnées.");
-        return;
-    }
-
-    const price = document.getElementById("priceOutput").textContent;
-    alert(`Votre réservation est confirmée du ${startDate.toLocaleDateString()} au ${endDate.toLocaleDateString()}. Prix total : ${price}`);
-}
-
-async function checkAvailabilityAPI(startDate, endDate) {
-    try {
-        const response = await fetch('/api/checkAvailability', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ startDate, endDate }),
-        });
-        const data = await response.json();
-        return data.isAvailable;
-    } catch (error) {
-        console.error('Erreur lors de la vérification de la disponibilité:', error);
-        return false;
-    }
-}
 
 
 // page produit annulation réservation
 
-// Simule les locations du client
 const rentals = [
     { id: 1, product: "Tapis de course RUN500", startDate: "2024-12-01", endDate: "2024-12-15", price: 179.8 },
     { id: 2, product: "Vélo elliptique", startDate: "2024-11-15", endDate: "2024-11-30", price: 89.9 },
 ];
 
-function loadRentals() {
-    const rentalList = document.getElementById("rentalList");
-    rentalList.innerHTML = ""; // Vide la liste avant de la remplir
-
-    rentals.forEach(rental => {
-        const now = new Date();
-        const startDate = new Date(rental.startDate);
-
-        // Vérifie si la location peut être annulée
-        const canCancel = startDate > now;
-
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `
-            <strong>${rental.product}</strong><br>
-            Du ${startDate.toLocaleDateString()} au ${new Date(rental.endDate).toLocaleDateString()}<br>
-            Prix : ${rental.price.toFixed(2)} €<br>
-            ${canCancel ? `<button onclick="cancelRental(${rental.id})">Annuler</button>` : "<em>Non annulable</em>"}
-        `;
-        rentalList.appendChild(listItem);
-    });
-}
-
-// Fonction pour annuler une location
-function cancelRental(rentalId) {
-    // Recherche la location
-    const rental = rentals.find(r => r.id === rentalId);
-
-    if (!rental) {
-        alert("Location introuvable.");
-        return;
-    }
-
-    const now = new Date();
-    const startDate = new Date(rental.startDate);
-
-    // Vérifie si la location peut être annulée
-    if (startDate <= now) {
-        alert("Cette location ne peut pas être annulée, car elle a déjà commencé.");
-        return;
-    }
-
-    // Simule l'annulation
-    alert(`La location du produit "${rental.product}" a été annulée.`);
-    // Ici, vous devriez envoyer une requête au serveur pour effectuer l'annulation réelle
-    rentals.splice(rentals.indexOf(rental), 1); // Supprime la location localement
-    loadRentals(); // Recharge la liste des locations
-}
-
-// Charger les locations à l'ouverture de la page
-document.addEventListener("DOMContentLoaded", loadRentals);
-
-
-app.post("/api/cancelRental", async (req, res) => {
+app.post('/api/cancelRental', (req, res) => {
     const { rentalId } = req.body;
 
-    // Rechercher la location dans la base de données
-    const rental = await Rental.findById(rentalId);
+    const rentalIndex = rentals.findIndex(r => r.id === rentalId);
 
-    if (!rental) {
-        return res.status(404).json({ message: "Location introuvable" });
+    if (rentalIndex === -1) {
+        return res.status(404).json({ message: "Location introuvable." });
     }
 
+    const rental = rentals[rentalIndex];
     const now = new Date();
     const startDate = new Date(rental.startDate);
 
-    // Vérifier si la location est annulable
     if (startDate <= now) {
         return res.status(400).json({ message: "Cette location ne peut pas être annulée, car elle a déjà commencé." });
     }
 
-    // Annuler la location
-    await Rental.deleteOne({ _id: rentalId }); // Supprimer ou marquer comme annulée
-    res.json({ message: "Location annulée avec succès" });
+    rentals.splice(rentalIndex, 1); // Supprime la location
+    res.json({ message: `La location "${rental.product}" a été annulée.` });
 });
 
-async function cancelRental(rentalId) {
-    try {
-        const response = await fetch('/api/cancelRental', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ rentalId }),
-        });
 
-        const result = await response.json();
-        if (response.ok) {
-            alert(result.message);
-            rentals.splice(rentals.findIndex(r => r.id === rentalId), 1); // Supprime localement
-            loadRentals(); // Recharge la liste
-        } else {
-            alert(result.message);
-        }
-    } catch (error) {
-        console.error("Erreur lors de l'annulation :", error);
-        alert("Une erreur est survenue.");
+
+app.post('/api/rentals', (req, res) => {
+    const { startDate, endDate } = req.body;
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    if (isNaN(start) || isNaN(end) || end < start) {
+        return res.status(400).json({ message: "Dates invalides." });
     }
-}
 
+    const days = (end - start) / (1000 * 60 * 60 * 24) + 1; // Durée en jours
+    const dailyPrice = 89.9;
+    let totalPrice = dailyPrice * days;
 
-//Réduction atomatique 
-
-// Prix journalier
-const dailyPrice = 89.9;
-
-document.getElementById("rentalForm").addEventListener("input", calculatePrice);
-
-function calculatePrice() {
-    const startDate = new Date(document.getElementById("startDate").value);
-    const endDate = new Date(document.getElementById("endDate").value);
-
-    if (!isNaN(startDate) && !isNaN(endDate) && endDate >= startDate) {
-        const days = (endDate - startDate) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
-        let totalPrice = dailyPrice * days;
-
-        // Appliquer une réduction de 10% si la durée est supérieure à 7 jours
-        if (days > 7) {
-            totalPrice *= 0.9; // Réduction de 10%
-        }
-
-        document.getElementById("totalPriceDisplay").textContent =
-            `Prix total : ${totalPrice.toFixed(2)} € (${days} jours)`;
-    } else {
-        document.getElementById("totalPriceDisplay").textContent = "Prix total : --";
+    // Applique une réduction de 10% si plus de 7 jours
+    if (days > 7) {
+        totalPrice *= 0.9;
     }
-}
 
-//Back end
+    // Simulation de sauvegarde en base
+    const newRental = {
+        id: rentals.length + 1,
+        product: "Tapis de course RUN500",
+        startDate: startDate,
+        endDate: endDate,
+        price: totalPrice,
+    };
+    rentals.push(newRental);
+
+    res.json({ message: "Réservation réussie", totalPrice });
+});
+
+
 document.getElementById("rentalForm").addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -376,33 +280,19 @@ document.getElementById("rentalForm").addEventListener("submit", async function 
     }
 });
 
-//back end pour calculer le prix
 
-app.post("/api/rentals", async (req, res) => {
-    const { startDate, endDate } = req.body;
+async function checkAvailability(startDate, endDate) {
+    try {
+        const response = await fetch('/api/checkAvailability', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ startDate, endDate }),
+        });
 
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-
-    if (isNaN(start) || isNaN(end) || end < start) {
-        return res.status(400).json({ message: "Dates invalides." });
+        const data = await response.json();
+        return data.isAvailable;
+    } catch (error) {
+        console.error('Erreur lors de la vérification de la disponibilité:', error);
+        return false;
     }
-
-    const days = (end - start) / (1000 * 60 * 60 * 24) + 1; // Calcul de la durée
-    const dailyPrice = 89.9;
-    let totalPrice = dailyPrice * days;
-
-    // Appliquer la réduction si la durée est supérieure à 7 jours
-    if (days > 7) {
-        totalPrice *= 0.9; // Réduction de 10%
-    }
-
-    // Enregistrer la réservation dans la base de données
-    const rental = await Rental.create({
-        startDate,
-        endDate,
-        totalPrice,
-    });
-
-    res.json({ message: "Réservation réussie", totalPrice });
-});
+}
