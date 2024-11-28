@@ -10,9 +10,17 @@
 #### Page Produit
 
 - **Resume** : Page produit pour la location de matérielle. Les fonctionnalités interactives sont gérées par JavaScript, et le design est assuré par des styles CSS intégrés.
-- **Se que j'ai fait** : Mise en place de la galerie d'image avec une fonction de carrouselle à 2 boutons, Mise en place de la partie description du matérielle.
 
-Mise en place de la location des date
+- **Se que j'ai fait** : 
+
+    - **Galerie d'images** :
+    
+    Inclut un carrousel avec deux boutons (<button>) pour naviguer entre les images via la fonction changeImage(direction).
+
+    L'image principale est affichée dans <img id="mainImage" ...>.
+
+    Une galerie miniature permet de sélectionner une image avec un clic (onclick="setImage(this.src)").
+
 
 
 - **Disponibilité en temps réel** : Indication de l'état du produit.
