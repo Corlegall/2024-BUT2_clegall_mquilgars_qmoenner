@@ -1,36 +1,56 @@
-const bdd = require("./database.js");
+const db = require('./database');
 
-// Fonction pour récupérer un utilisateur par ID
-async function getUserById(id) {
-    const sql = "SELECT * FROM utilisateur WHERE id = ?";
+module.exports = {
+  // Récupérer un utilisateur par son login
+  checkLogin: (login) => {
     return new Promise((resolve, reject) => {
-        bdd.query(sql, [id], (err, results) => {
-            if (err) {
-                return reject(err); // Rejette en cas d'erreur
-            }
-            if (results.length === 0) {
-                return resolve(null); // Retourne null si aucun utilisateur n'est trouvé
-            }
-            resolve(results[0]); // Retourne le premier utilisateur trouvé
-        });
+      const query = 'SELECT * FROM utilisateur WHERE login = ?';
+      db.query(query, [login], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results[0]); // Retourne le premier résultat (utilisateur trouvé)
+        }
+      });
     });
-}
+  },
 
-// Fonction pour vérifier si un login existe
-async function checklogin(login) {
-    const sql = "SELECT * FROM utilisateur WHERE login = ?";
+  // Récupérer un utilisateur par son ID
+  getUserById: (id) => {
     return new Promise((resolve, reject) => {
-        bdd.query(sql, [login], (err, results) => {
-            if (err) {
-                return reject(err); // Rejette en cas d'erreur
-            }
-            if (results.length === 0) {
-                return resolve(null); // Retourne null si aucun utilisateur n'est trouvé
-            }
-            resolve(results[0]); // Retourne l'utilisateur trouvé
-        });
+      const query = 'SELECT * FROM utilisateur WHERE id = ?';
+      db.query(query, [id], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results[0]); // Retourne le premier résultat
+        }
+      });
     });
-}
+  },
 
-// Exporter les fonctions pour les utiliser dans d'autres fichiers
-module.exports = { getUserById, checklogin };
+  // Ajouter un utilisateur (par exemple, lors de l'inscription)
+  addUser: (user) => {
+    return new Promise((resolve, reject) => {
+      const query = `
+        INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `;
+      db.query(query, [
+        user.login,
+        user.password,
+        user.nom,
+        user.prenom,
+        user.ddn,
+        user.email,
+        user.type_utilisateur
+      ], (err, results) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(results.insertId); // Retourne l'ID de l'utilisateur ajouté
+        }
+      });
+    });
+  },
+};
