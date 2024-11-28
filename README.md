@@ -8,8 +8,13 @@
 #### Quentin Moenner
 
 #### Page Produit
-- **Galerie d'images** : Navigation entre différentes images du produit.
-- **Sélection des dates** : Choix interactif de la période de location, avec calcul automatique du prix.
+
+- **Resume** : Page produit pour la location de matérielle. Les fonctionnalités interactives sont gérées par JavaScript, et le design est assuré par des styles CSS intégrés.
+- **Se que j'ai fait** : Mise en place de la galerie d'image avec une fonction de carrouselle à 2 boutons, Mise en place de la partie description du matérielle.
+
+Mise en place de la location des date
+
+
 - **Disponibilité en temps réel** : Indication de l'état du produit.
 - **Action de location** : Bouton pour initier le processus de réservation.
 
