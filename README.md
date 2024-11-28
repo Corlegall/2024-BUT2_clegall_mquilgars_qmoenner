@@ -2,15 +2,11 @@
 
 # Documentation du Projet : Site "Location de Matériel"
 
-## Description du Projet
-Le projet est un **site web dynamique** destiné à un service de location de matériel sportif. Il inclut plusieurs pages fonctionnelles pour l'utilisateur et admin :
 
-1. **Page Produit** : Présente un produit spécifique, ses détails, et permet de choisir une période de location.
-2. **Page Contact** : Fournit les coordonnées de l'équipe et des créateurs du site.
-3. **Page administration** : Fournit les coordonnées de l'équipe et des créateurs du site.
-4. **script.js** : Fournit les coordonnées de l'équipe et des créateurs du site.
+### Notre travail :
 
-### Fonctionnalités principales :
+#### Quentin Moenner
+
 #### Page Produit
 - **Galerie d'images** : Navigation entre différentes images du produit.
 - **Sélection des dates** : Choix interactif de la période de location, avec calcul automatique du prix.
@@ -21,9 +17,21 @@ Le projet est un **site web dynamique** destiné à un service de location de ma
 - **Informations de contact** : Présente l'email, le numéro de téléphone et les créateurs du site.
 - **Boutons CV** : Lien vers les CV des membres de l'équipe.
 
+
+#### Maël 
+
+
+
+#### Corentin
+
+
+
+
 ---
 
 ## Problèmes rencontrés et solutions
+
+#### Quentin Moenner
 
 ### Problème 1 : Gestion des styles spécifiques
 **Détail :** Chaque page nécessitait une mise en page et des styles personnalisés.  
@@ -33,9 +41,20 @@ Le projet est un **site web dynamique** destiné à un service de location de ma
 **Détail :** La galerie d'images sur la page produit avait des difficultés à afficher correctement les vignettes sur les écrans mobiles.  
 **Solution :** Utilisation de `flex-wrap` pour rendre la galerie adaptative sur différentes tailles d'écran.
 
+
+#### Maël
+
+
+
+#### Corentin
+
+
+
 ---
 
 ## Extensions et modules installés
+
+#### Quentin Moenner
 
 ### Frontend
 - **HTML5** : Pour structurer les pages.
@@ -46,6 +65,15 @@ Le projet est un **site web dynamique** destiné à un service de location de ma
 - **EJS** : Moteur de template utilisé pour rendre les composants réutilisables (comme le menu de navigation).
 - **Express.js** : Framework pour servir les pages et gérer les routes.
 - **Node.js** : Environnement pour exécuter le serveur.
+
+
+#### Maël
+
+
+
+#### Corentin
+
+
 
 ---
 
