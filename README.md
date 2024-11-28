@@ -3,10 +3,12 @@
 # Documentation du Projet : Site "Location de Matériel"
 
 ## Description du Projet
-Le projet est un **site web dynamique** destiné à un service de location de matériel sportif. Il inclut plusieurs pages fonctionnelles pour l'utilisateur :
+Le projet est un **site web dynamique** destiné à un service de location de matériel sportif. Il inclut plusieurs pages fonctionnelles pour l'utilisateur et admin :
 
 1. **Page Produit** : Présente un produit spécifique, ses détails, et permet de choisir une période de location.
 2. **Page Contact** : Fournit les coordonnées de l'équipe et des créateurs du site.
+3. **Page administration** : Fournit les coordonnées de l'équipe et des créateurs du site.
+4. **script.js** : Fournit les coordonnées de l'équipe et des créateurs du site.
 
 ### Fonctionnalités principales :
 #### Page Produit
