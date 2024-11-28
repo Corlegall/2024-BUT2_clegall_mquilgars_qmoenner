@@ -247,11 +247,172 @@
                 .Les dates sont validées pour s'assurer que la date de fin est postérieure à la date de début.
             
 
-#### Maël :
+#### Maël Quilgars:
+# Catalogue
+
+## Résumé
+Page de présentation des produits disponibles dans le catalogue, avec des options de recherche, de tri, et une interface utilisateur responsive. Les données des produits sont extraites dynamiquement depuis une base de données.
+
+---
+
+## Ce que j'ai fait
+
+### Barre de recherche
+- Une barre de recherche intuitive avec :
+  - Un champ de texte (`<input>`).
+  - Un bouton de recherche (`🔍`).
+- Les résultats sont filtrés dynamiquement en fonction des termes saisis.
+
+### Options de tri
+- Un menu déroulant (`<select>`) propose plusieurs critères de tri :
+  - Prix croissant.
+  - Prix décroissant.
+  - Popularité.
+  - Meilleures notes.
+
+### Sidebar interactive
+- Une barre latérale fixe avec des boutons pour accéder rapidement aux sections importantes du site :
+  - Accueil.
+  - Produits.
+  - Services.
+  - Contact.
+  - À propos.
+- Les boutons sont stylisés avec des effets au survol (`hover`).
+
+### Affichage des produits
+- Les produits sont affichés sous forme de **cartes**, regroupant :
+  - Une image illustrative.
+  - Le titre du produit.
+  - Le prix.
+  - Une brève description.
+- Les données sont récupérées dynamiquement depuis une base de données et insérées dans les cartes grâce à EJS :
+  ```ejs
+  <% produits.forEach(produit => { %>
+      <div class="product-item">
+          <img src="<%= produit.image %>" alt="<%= produit.marque %> <%= produit.modele %>">
+          <div class="product-title"><%= produit.marque %> <%= produit.modele %></div>
+          <div class="product-price"><%= produit.prix %> €</div>
+          <div class="product-description"><%= produit.description %></div>
+      </div>
+  <% }) %>
+
+
+### Si aucun produit n'est disponible, un message informatif est affiché :
+
+<% if (produits.length === 0) { %>
+    <p>Aucun produit disponible.</p>
+<% } %>
+
+
+### Interactivité (JavaScript)
+### Les fonctionnalités interactives comprennent :
+#### La gestion des critères de tri via des événements sur le menu déroulant.
+#### Le filtrage dynamique lors de la saisie dans la barre de recherche.
+
+
+
+# page catalogue
+
+# Location
+
+## Résumé
+Page dédiée à la gestion des locations sur LocFit. Les informations concernant les produits loués sont affichées dynamiquement à partir des données récupérées depuis la base de données.
+
+---
+
+## Ce que j'ai fait
+
+### Présentation des locations
+- Affichage des informations principales sur les produits loués, regroupées dans des **cartes produits** :
+  - **Image du produit** : Affichée avec une image placeholder ou l'image réelle si disponible.
+  - **Titre du produit** : Inclut la marque et le modèle.
+  - **Utilisateur** : Prénom et nom de la personne ayant loué le produit.
+  - **Dates** :
+    - Date de retour effective si le produit a été retourné.
+    - Message de rappel si le produit n'a pas encore été rendu.
+  - **Prix total** de la location.
+  - **Message** : Encourage les utilisateurs à respecter les délais de retour.
+
+### Gestion des données avec EJS
+- Les données de location sont générées dynamiquement grâce à des boucles et des conditions :
+  ```ejs
+  <% locations.forEach(location => { %>
+      <div class="product-item">
+          <img src="https://via.placeholder.com/200" alt="<%= location.produitMarque %> <%= location.produitModele %>">
+          
+          <div class="container_info">
+              <div class="product-title">
+                  <%= location.produitMarque %> - <%= location.produitModele %>
+              </div>
+          </div>
+
+          <div class="product-location">
+              Loué par : <%= location.utilisateurPrenom %> <%= location.utilisateurNom %>
+          </div>
+
+          <div class="product-dates">
+              <% if (location.dateRetourEffective) { %>
+                  <div class="product-date-effective">
+                      <strong>Date de retour effective : <%= location.dateRetourEffective %></strong>
+                  </div>
+              <% } else { %>
+                  <div class="product-date-effective">
+                      <strong>Retour non encore effectué</strong>
+                  </div>
+              <% } %>
+          </div>
+
+          <div class="product-price">Prix total : <%= location.prix %> €</div>
+          <div class="product-description">Veuillez respecter les délais de retour pour éviter les sanctions !</div>
+      </div>
+  <% }) %>
+
+
+
+### Fonctionnalités interactives
+#### Affichage conditionnel : Les dates de retour sont affichées en fonction de leur disponibilité.
+#### Responsive design : Les cartes s'ajustent pour s'afficher de manière optimale sur différents appareils grâce à flex-wrap.
+
+
+
+
+# Gestion de Produits
+
+Ce projet est une interface utilisateur conçue pour gérer des produits, permettant aux utilisateurs de visualiser, rechercher, trier, ajouter et supprimer des produits.
+
+##  Fonctionnalités
+
+- **Réservation en cours** : Affiche les produits actuellement réservés, avec des options de recherche et de tri.
+- **Matériel rendu par les clients** : Liste les produits rendus par les clients, également avec des outils de recherche et de tri.
+- **Ajouter un produit** : Une section pour ajouter un nouveau produit avec un formulaire interactif (nom, prix, description et URL de l'image).
+- **Supprimer un produit** : Permet de rechercher des produits et de les supprimer facilement.
+
+## 🌟 Structure des pages
+
+### 1. Réservation en cours
+- Une barre de recherche pour filtrer les produits.
+- Des options pour trier les produits par prix, popularité ou notes.
+- Une grille affichant tous les produits disponibles avec leur nom et leur prix.
+
+### 2. Matériel rendu par les clients
+- Similaire à la section "Réservation en cours", mais affiche les produits qui ont été rendus.
+
+### 3. Ajouter un produit
+- Un formulaire contenant :
+  - Nom du produit.
+  - Prix.
+  - Description.
+  - URL de l'image.
+- Un bouton pour valider et ajouter le produit à la base de données.
+
+### 4. Supprimer un produit
+- Une liste de produits avec des boutons individuels pour les supprimer.
+
 
 
 
 #### Corentin :
+
 
 
 
@@ -280,6 +441,30 @@
 
 
 #### Maël
+
+### Problème 1 : barre de recherche 
+Les barres de recherche sont présente et stylée mais ne sont pas fonctionnel.  
+
+**Solution :**
+Implémentez une fonction JavaScript pour filtrer les produits affichés en fonction de la recherche de l'utilisateur.
+
+### Problème 2 : produit cliquable 
+Les produits ne sont pas cliquable et ne redirige pas vers la page produit.  
+
+**Solution :** 
+lié les pages catalogue et location a la page produit et implémenter un liens dans mes éléments produits.
+
+### Problème 3 : ajout suppression produit
+Les rubrique ajouter et supprimer un produit ne sont pas fonctionnelle et ne permettent pas d'interagire avec la base de donnée
+
+**Solution :** 
+Ajouter dans le backend une fontion pemettant de d'implementer dans la base de données des produit via le formulaire présent dans la page gestion ainsi que la fonction de retrait au clique sur l'icone poubelle.
+
+### Problème 4 : matériel réserver et rendu
+Les rubrique voir le matériel réserver et le matériel rendu ne sont pas lié a la base de donnée 
+
+**Solution :** 
+implémenter une fonction qui lie ma base de donnée a l'interface de gestion et que repartie les produit dans les catégorie matériel rendu et matériel en cours de réservation en fonction de leurs état de location .
 
 
 
