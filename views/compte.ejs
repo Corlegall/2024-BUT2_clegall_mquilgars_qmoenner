@@ -9,24 +9,27 @@
 
 <body>
     <%- include('header') %>
-        <div class="enregistrement">
-            <div class="regis">
-                <main>
-                    <form method="post" action="/compte">
-                        <input type="text" name="compte" placeholder="e-mail" />
-                        <input type="text" name="nom" placeholder="Votre nom" />
-                        <input type="text" name="prénom" placeholder="Votre prénom" />
-                        <input type="date" name="nom" placeholder="Votre date de naissance" />
-                        <input type="password" name="password" placeholder="Mot de passe" />
-                        <input type="password" name="password" placeholder="Confirmer votre mot de passe" />
-                        <input type="submit" value="Enregistrement" />
-                        <a href="/login" class="connexion">Connexion</a>
-                    </form>
-                </main>
-            </div>
+    <div class="enregistrement">
+        <div class="regis">
+            <main>
+                <form method="post" action="/compte">
+                    <input type="text" name="pseudo" placeholder="Pseudonyme" required />
+                    <input type="text" name="email" placeholder="E-mail" required />
+                    <input type="text" name="nom" placeholder="Votre nom" required />
+                    <input type="text" name="prenom" placeholder="Votre prénom" required />
+                    <input type="date" name="dateNaissance" placeholder="Votre date de naissance" required />
+                    <input type="password" name="password" placeholder="Mot de passe" required />
+                    <input type="password" name="confirmPassword" placeholder="Confirmer votre mot de passe" required />
+                    <input type="submit" value="Enregistrement" />
+                    <a href="/login" class="connexion">Connexion</a>
+                </form>
+            </main>
         </div>
-        <%- include('footer') %>
+    </div>
+    <%- include('footer') %>
 </body>
+
+
 
 </html>
 

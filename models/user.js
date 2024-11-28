@@ -1,11 +1,11 @@
 const db = require('./database');
 
 module.exports = {
-    // Récupérer un utilisateur par son login
+    // Récupérer un utilisateur par son login (pseudo ou email)
     checkLogin: (login) => {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM utilisateur WHERE login = ?';
-            db.query(query, [login], (err, results) => {
+            const query = 'SELECT * FROM utilisateur WHERE pseudo = ? OR email = ?';
+            db.query(query, [login, login], (err, results) => {
                 if (err) {
                     reject(err);
                 } else {
@@ -29,21 +29,48 @@ module.exports = {
         });
     },
 
+    // Récupérer un utilisateur par son email
+    getUserByEmail: (email) => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM utilisateur WHERE email = ?';
+            db.query(query, [email], (err, results) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results[0]); // Retourne le premier résultat
+                }
+            });
+        });
+    },
+
+    // Récupérer un utilisateur par son pseudo
+    getUserByPseudo: (pseudo) => {
+        return new Promise((resolve, reject) => {
+            const query = 'SELECT * FROM utilisateur WHERE pseudo = ?';
+            db.query(query, [pseudo], (err, results) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results[0]); // Retourne le premier résultat
+                }
+            });
+        });
+    },
+
     // Ajouter un utilisateur (par exemple, lors de l'inscription)
-    addUser: (user) => {
+    createUser: (user) => {
         return new Promise((resolve, reject) => {
             const query = `
-        INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-      `;
+                INSERT INTO utilisateur (pseudo, email, nom, prenom, date_naissance, password) 
+                VALUES (?, ?, ?, ?, ?, ?)
+            `;
             db.query(query, [
-                user.login,
-                user.password,
+                user.pseudo,
+                user.email,
                 user.nom,
                 user.prenom,
-                user.ddn,
-                user.email,
-                user.type_utilisateur
+                user.dateNaissance,
+                user.password,
             ], (err, results) => {
                 if (err) {
                     reject(err);
