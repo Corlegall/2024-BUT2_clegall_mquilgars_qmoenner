@@ -1,82 +1,69 @@
-const db = require('./database');
+const db = require('./database'); // Importer la connexion à la base de données
 
 module.exports = {
-    // Récupérer un utilisateur par son login (pseudo ou email)
-    checkLogin: (login) => {
-        return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM utilisateur WHERE pseudo = ? OR email = ?';
-            db.query(query, [login, login], (err, results) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results[0]); // Retourne le premier résultat (utilisateur trouvé)
-                }
-            });
-        });
-    },
-
-    // Récupérer un utilisateur par son ID
-    getUserById: (id) => {
-        return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM utilisateur WHERE id = ?';
-            db.query(query, [id], (err, results) => {
-                if (err) {
-                    reject(err);
-                } else {
-                    resolve(results[0]); // Retourne le premier résultat
-                }
-            });
-        });
-    },
-
-    // Récupérer un utilisateur par son email
+    /**
+     * Vérifie si un utilisateur existe via son email.
+     * @param {string} email - L'email de l'utilisateur.
+     * @returns {Promise<object|null>} - L'utilisateur correspondant ou null.
+     */
     getUserByEmail: (email) => {
         return new Promise((resolve, reject) => {
             const query = 'SELECT * FROM utilisateur WHERE email = ?';
             db.query(query, [email], (err, results) => {
                 if (err) {
-                    reject(err);
-                } else {
-                    resolve(results[0]); // Retourne le premier résultat
+                    console.error('Erreur lors de la récupération de l\'email :', err);
+                    return reject(err);
                 }
+                resolve(results[0] || null); // Retourne null si aucun utilisateur trouvé
             });
         });
     },
 
-    // Récupérer un utilisateur par son pseudo
-    getUserByPseudo: (pseudo) => {
+    /**
+     * Vérifie si un utilisateur existe via son login.
+     * @param {string} login - Le login de l'utilisateur.
+     * @returns {Promise<object|null>} - L'utilisateur correspondant ou null.
+     */
+    checkLogin: (login) => {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM utilisateur WHERE pseudo = ?';
-            db.query(query, [pseudo], (err, results) => {
+            const query = 'SELECT * FROM utilisateur WHERE login = ?'; // "login" au lieu de "pseudo" pour cohérence
+            db.query(query, [login], (err, results) => {
                 if (err) {
-                    reject(err);
-                } else {
-                    resolve(results[0]); // Retourne le premier résultat
+                    console.error('Erreur lors de la vérification du login :', err);
+                    return reject(err);
                 }
+                resolve(results[0] || null); // Retourne null si aucun utilisateur trouvé
             });
         });
     },
 
-    // Ajouter un utilisateur (par exemple, lors de l'inscription)
-    createUser: (user) => {
+    /**
+     * Ajoute un utilisateur à la base de données.
+     * @param {object} user - Les informations de l'utilisateur.
+     * @returns {Promise<number>} - L'ID du nouvel utilisateur.
+     */
+    addUser: (user) => {
         return new Promise((resolve, reject) => {
             const query = `
-                INSERT INTO utilisateur (pseudo, email, nom, prenom, date_naissance, password) 
-                VALUES (?, ?, ?, ?, ?, ?)
+                INSERT INTO utilisateur (login, password, nom, prenom, ddn, email, type_utilisateur)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
             `;
-            db.query(query, [
-                user.pseudo,
-                user.email,
+            const values = [
+                user.login,  // login ou pseudo
+                user.password, // Mot de passe crypté
                 user.nom,
                 user.prenom,
-                user.dateNaissance,
-                user.password,
-            ], (err, results) => {
+                user.ddn,      // Date de naissance
+                user.email,
+                user.type_utilisateur,
+            ];
+
+            db.query(query, values, (err, results) => {
                 if (err) {
-                    reject(err);
-                } else {
-                    resolve(results.insertId); // Retourne l'ID de l'utilisateur ajouté
+                    console.error('Erreur lors de l\'ajout d\'un utilisateur :', err);
+                    return reject(err);
                 }
+                resolve(results.insertId); // Retourne l'ID du nouvel utilisateur
             });
         });
     },

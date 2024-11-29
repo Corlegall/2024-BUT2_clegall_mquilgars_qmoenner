@@ -4,22 +4,17 @@ const md5 = require('md5');
 const usrModel = require('./models/user.js');
 const produitModel = require('./models/produit.js');
 const locationModel = require('./models/location.js');
-
 const app = express();
 
-// Configuration du moteur de vue
 app.set('view engine', 'ejs');
 
-// Middleware pour les fichiers statiques
 app.use(express.static('public'));
-
-// Middleware pour analyser les données de formulaires
 app.use(express.urlencoded({ extended: true }));
 
-// Configuration des sessions
+
 app.use(
     session({
-        secret: 'OOF', // À remplacer par une clé plus sécurisée en production
+        secret: 'OOF',
         resave: false,
         saveUninitialized: false,
     })
@@ -32,7 +27,7 @@ app.use((req, res, next) => {
             id: req.session.userId,
             prenom: req.session.prenom || 'Prénom',
             nom: req.session.nom || 'Nom',
-            pseudo: req.session.pseudo || 'Pseudo',
+            login: req.session.login || 'Login', // Remplacez pseudo par login
         };
     } else {
         res.locals.user = null; // Aucun utilisateur connecté
@@ -48,12 +43,10 @@ const isAuthenticated = (req, res, next) => {
     next();
 };
 
-// Route principale protégée
+// Connexion
 app.get('/', isAuthenticated, (req, res) => {
-    res.render('index'); // L'utilisateur est accessible via `res.locals.user`
+    res.render('index');
 });
-
-// Route de connexion
 app.get('/login', (req, res) => {
     res.render('login', { error: null });
 });
@@ -72,12 +65,11 @@ app.post('/login', async (req, res) => {
             req.session.userId = user.id;
             req.session.prenom = user.prenom;
             req.session.nom = user.nom;
-            req.session.pseudo = user.pseudo;
+            req.session.login = user.login;
             req.session.role = user.type_utilisateur;
 
             return res.redirect('/');
         }
-
         res.render('login', { error: 'Identifiant ou mot de passe incorrect.' });
     } catch (err) {
         console.error('Erreur lors de la connexion :', err);
@@ -85,7 +77,7 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Route de déconnexion
+// Déconnexion
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) {
@@ -115,10 +107,10 @@ app.get('/compte', (req, res) => {
 
 app.post('/compte', async (req, res) => {
     try {
-        const { pseudo, prenom, nom, email, dateNaissance, password, confirmPassword } = req.body;
+        const { login, prenom, nom, email, ddn, password, confirmPassword } = req.body;
 
         // Validation des champs
-        if (!pseudo || !prenom || !nom || !email || !dateNaissance || !password || !confirmPassword) {
+        if (!login || !prenom || !nom || !email || !ddn || !password || !confirmPassword) {
             return res.render('compte', { error: 'Tous les champs sont requis.' });
         }
 
@@ -132,26 +124,29 @@ app.post('/compte', async (req, res) => {
             return res.render('compte', { error: 'Cet e-mail est déjà utilisé.' });
         }
 
-        const existingPseudo = await usrModel.getUserByPseudo(pseudo);
-        if (existingPseudo) {
-            return res.render('compte', { error: 'Ce pseudonyme est déjà utilisé.' });
-        }
-
         // Hachage du mot de passe
         const hashedPassword = md5(password);
 
         // Création de l'utilisateur
-        const result = await usrModel.createUser({
-            pseudo,
+        const result = await usrModel.addUser({
+            login,
             prenom,
             nom,
             email,
-            dateNaissance,
+            ddn, // Date de naissance
             password: hashedPassword,
+            type_utilisateur: 'client' // Définir le rôle de l'utilisateur
         });
 
         if (result) {
-            return res.redirect('/login'); // Redirection après succès
+            // Créez une session pour le nouvel utilisateur
+            req.session.userId = result.id;
+            req.session.prenom = prenom;
+            req.session.nom = nom;
+            req.session.login = login;
+            req.session.role = 'client';
+
+            return res.redirect('/'); // Redirection vers la page d'accueil après succès
         } else {
             res.render('compte', { error: 'Une erreur est survenue lors de la création du compte.' });
         }
@@ -201,7 +196,7 @@ function formatDate(date) {
     return `${day}/${month}/${year}`;
 }
 
-// Démarrage du serveur
+// Démarrage du serveur avec nodemon
 app.listen(3000, () => {
     console.log('Server running on port 3000');
 });
