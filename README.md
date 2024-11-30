@@ -408,15 +408,6 @@ Ce projet est une interface utilisateur conçue pour gérer des produits, permet
 ### 4. Supprimer un produit
 - Une liste de produits avec des boutons individuels pour les supprimer.
 
-
-
-
-#### Corentin :
-
-
-
-
-
 ---
 
 ## Problèmes rencontrés et solutions
@@ -467,9 +458,52 @@ Les rubrique voir le matériel réserver et le matériel rendu ne sont pas lié 
 implémenter une fonction qui lie ma base de donnée a l'interface de gestion et que repartie les produit dans les catégorie matériel rendu et matériel en cours de réservation en fonction de leurs état de location .
 
 
+# Corentin
 
-#### Corentin
+## Header et Footer
+**Les objectifs du Header :**
+Avoir le nom de l'utilisateur et la possibilité de se déconnecter.
 
+### Problème : Trouver une solution pour se déplacer sur le site et se déconnecter du site internet facilement
+Il faut un emplacement accessible sur la page. 
+Le header m'est venu en tête rapidement, seulement rajouter un bouton déconnexion en plus aurait surchargé d'un point de vue visuel le header. 
+Donc j'utilise le nom d'utilisateur comme bouton pour se déconnecter du site.
+
+### Solution : APP.js
+Créer des routes via le APP.js
+
+### Solution : Se déconnecter
+Donc on utilise express pour détruire la session au moment où on appuie sur le nom de l'utilisateur pour être renvoyé à la page login.
+
+**Résultats :** 
+Vous pouvez vous déconnecter du site via le header en cliquant sur l'identifiant.
+Toutefois j'ai conscience que cette solution est très loin d'être idéale. Mais cela fonctionne en attendant. 
+
+### Problème : Trouver une solution pour se déconnecter du site internet facilement
+En tant que client, je dois pouvoir m'inscrire et me créer un compte sur le site. 
+Un utilisateur doit être majeur pour s'inscrire (on considère que la confirmation du mail se fera dans une version future de l'application).
+
+## Créer un compte
+**Les objectifs :** pouvoir créer un compte et pouvoir se connecter avec ce compte.
+
+### Problème : 
+Nous devons lier le formulaire de compte.ejs à la base de données de phpmyadmin en utilisant app.js et user.js.
+Le formulaire doit contenir les informations de la table utilisateur présente sur phpmyadmin. 
+
+**Résultats :** 
+Je peux désormais créer un compte, qui sera directement considéré comme client dans la base de données. 
+Il suffit juste de me connecter sur la page login.ejs pour accéder au site internet, après avoir rempli le formulaire et être redirigé sur la page connexion.
+Seulement, je n'ai pas eu le temps de trouver une solution pour savoir si mon utilisateur avait 18 ans au plus.
+
+## Connexion
+**Les objectifs du compte :** 
+En tant que client, je dois pouvoir me connecter sur mon compte.
+
+### Problème : 
+J'ai globalement rencontré les mêmes problèmes qu'avec la création de compte, à la différence que j'avais moins de travail car je devais trouver une solution pour récupérer la base de données de locfit pour vérifier que les informations entrées correspondaient, comme le pseudo ou le hachage.
+
+**Résultats :** 
+Je peux me connecter au site.
 
 
 ---
@@ -486,6 +520,8 @@ implémenter une fonction qui lie ma base de donnée a l'interface de gestion et
 
 
 #### Corentin :
+
+### Pas d'ajout
 
 
 

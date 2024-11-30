@@ -1,10 +1,13 @@
-const db = require('./database'); // Importer la connexion à la base de données
+//Base de donné
+const db = require('./database');
 
+
+//Vérifie si un utilisateur existe via son email.
 module.exports = {
     /**
-     * Vérifie si un utilisateur existe via son email.
-     * @param {string} email - L'email de l'utilisateur.
-     * @returns {Promise<object|null>} - L'utilisateur correspondant ou null.
+     * 
+     * @param {string} email 
+     * @returns {Promise<object|null>} 
      */
     getUserByEmail: (email) => {
         return new Promise((resolve, reject) => {
@@ -14,25 +17,25 @@ module.exports = {
                     console.error('Erreur lors de la récupération de l\'email :', err);
                     return reject(err);
                 }
-                resolve(results[0] || null); // Retourne null si aucun utilisateur trouvé
+                resolve(results[0] || null);
             });
         });
     },
 
     /**
-     * Vérifie si un utilisateur existe via son login.
+     * Vérifie si il existe via son login.
      * @param {string} login - Le login de l'utilisateur.
      * @returns {Promise<object|null>} - L'utilisateur correspondant ou null.
      */
     checkLogin: (login) => {
         return new Promise((resolve, reject) => {
-            const query = 'SELECT * FROM utilisateur WHERE login = ?'; // "login" au lieu de "pseudo" pour cohérence
+            const query = 'SELECT * FROM utilisateur WHERE login = ?';
             db.query(query, [login], (err, results) => {
                 if (err) {
                     console.error('Erreur lors de la vérification du login :', err);
                     return reject(err);
                 }
-                resolve(results[0] || null); // Retourne null si aucun utilisateur trouvé
+                resolve(results[0] || null); 
             });
         });
     },
@@ -49,11 +52,11 @@ module.exports = {
                 VALUES (?, ?, ?, ?, ?, ?, ?)
             `;
             const values = [
-                user.login,  // login ou pseudo
-                user.password, // Mot de passe crypté
+                user.login, 
+                user.password, 
                 user.nom,
                 user.prenom,
-                user.ddn,      // Date de naissance
+                user.ddn,      
                 user.email,
                 user.type_utilisateur,
             ];
@@ -63,7 +66,7 @@ module.exports = {
                     console.error('Erreur lors de l\'ajout d\'un utilisateur :', err);
                     return reject(err);
                 }
-                resolve(results.insertId); // Retourne l'ID du nouvel utilisateur
+                resolve(results.insertId); 
             });
         });
     },

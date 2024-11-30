@@ -9,8 +9,8 @@
             <li><a href="/location">Vos Locations</a></li>
         </ul>
         <div class="compte">
-            <% if (user) { %> <!-- Vérifie si user existe -->
-                <a href="/logout" class="compte-container"> <!-- Lien vers la déconnexion -->
+            <% if (user) { %>
+                <a href="/logout" class="compte-container"> 
                     <div class="nom-compte">
                         <span class="prenom-header">
                             <%= user.prenom %>

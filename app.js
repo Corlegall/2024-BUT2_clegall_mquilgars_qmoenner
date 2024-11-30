@@ -27,15 +27,15 @@ app.use((req, res, next) => {
             id: req.session.userId,
             prenom: req.session.prenom || 'Prénom',
             nom: req.session.nom || 'Nom',
-            login: req.session.login || 'Login', // Remplacez pseudo par login
+            login: req.session.login || 'Login',
         };
     } else {
-        res.locals.user = null; // Aucun utilisateur connecté
+        res.locals.user = null; 
     }
     next();
 });
 
-// Fonction pour vérifier si un utilisateur est authentifié
+// Vérifier si un utilisateur est authentifié
 const isAuthenticated = (req, res, next) => {
     if (!req.session.userId) {
         return res.redirect('/login');
@@ -88,7 +88,7 @@ app.get('/logout', (req, res) => {
     });
 });
 
-// Route catalogue
+// Catalogue
 app.get('/catalogue', async (req, res) => {
     try {
         const produits = await produitModel.getAllProduits();
@@ -99,9 +99,8 @@ app.get('/catalogue', async (req, res) => {
     }
 });
 
-// Route pour afficher la page de création de compte
+// Création de compte
 app.get('/compte', (req, res) => {
-    // Accessible même si l'utilisateur n'est pas connecté
     res.render('compte', { error: null });
 });
 
@@ -109,46 +108,38 @@ app.post('/compte', async (req, res) => {
     try {
         const { login, prenom, nom, email, ddn, password, confirmPassword } = req.body;
 
-        // Validation des champs
         if (!login || !prenom || !nom || !email || !ddn || !password || !confirmPassword) {
             return res.render('compte', { error: 'Tous les champs sont requis.' });
         }
-
         if (password !== confirmPassword) {
             return res.render('compte', { error: 'Les mots de passe ne correspondent pas.' });
         }
-
-        // Vérification si l'utilisateur existe déjà
         const existingUser = await usrModel.getUserByEmail(email);
         if (existingUser) {
             return res.render('compte', { error: 'Cet e-mail est déjà utilisé.' });
         }
-
-        // Hachage du mot de passe
         const hashedPassword = md5(password);
 
-        // Création de l'utilisateur
         const result = await usrModel.addUser({
             login,
             prenom,
             nom,
             email,
-            ddn, // Date de naissance
+            ddn, 
             password: hashedPassword,
-            type_utilisateur: 'client' // Définir le rôle de l'utilisateur
+            type_utilisateur: 'client' 
         });
 
         if (result) {
-            // Créez une session pour le nouvel utilisateur
             req.session.userId = result.id;
             req.session.prenom = prenom;
             req.session.nom = nom;
             req.session.login = login;
             req.session.role = 'client';
 
-            return res.redirect('/'); // Redirection vers la page d'accueil après succès
+            return res.redirect('/');
         } else {
-            res.render('compte', { error: 'Une erreur est survenue lors de la création du compte.' });
+            res.render('compte', { error: 'Erreur lors de la création du compte.' });
         }
     } catch (err) {
         console.error('Erreur lors de la création du compte :', err);
@@ -176,13 +167,13 @@ app.get('/location', isAuthenticated, async (req, res) => {
     }
 });
 
-// Autres routes
+// Les routes
 app.get('/produits', (req, res) => res.render('produits'));
 app.get('/administration', isAuthenticated, (req, res) => res.render('administration'));
 app.get('/contact', (req, res) => res.render('contact'));
 app.get('/gestion', isAuthenticated, (req, res) => res.render('gestion'));
 
-// Gestion des erreurs 404
+// 404
 app.use((req, res) => {
     res.status(404).render('404');
 });
